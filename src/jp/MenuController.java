@@ -4,14 +4,16 @@ import java.util.*;
 
 /** This is the Menu Controller for the View */
 public class MenuController extends MenuBar {
+	/** The Frame, used only for parenting Dialogs */
+	Frame parent;
 	/** The Model which we are controlling */
 	Model model;
 
-	public MenuController(Model m) {
+	public MenuController(Frame f, Model m) {
+		parent = f;
 		model = m;
 
 		MenuItem mi;
-		// model.nextPage();
 
 		ResourceBundle b = ResourceBundle.getBundle("JabberPointMenus");
 		String menuLabel;
@@ -47,26 +49,37 @@ public class MenuController extends MenuBar {
 		add(fm);
 
 		Menu vm = mkMenu(b,  "view");
-		vm.add(mkMenuItem(b, "view", "next"));
+		vm.add(mi = mkMenuItem(b, "view", "next"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.nextPage();
 			}
 		});
-		vm.add(mkMenuItem(b, "view", "previous"));
+		vm.add(mi = mkMenuItem(b, "view", "previous"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.prevPage();
 			}
 		});
 		vm.addSeparator();
-		vm.add(mkMenuItem(b, "view", "slideshow"));
-		vm.add(mkMenuItem(b, "view", "outline"));
-		vm.add(mkMenuItem(b, "view", "slidesorter"));
+		vm.add(mi = mkMenuItem(b, "view", "slideshow"));
+		vm.add(mi = mkMenuItem(b, "view", "outline"));
+		vm.add(mi = mkMenuItem(b, "view", "slidesorter"));
 		add(vm);
 
 		Menu hm = mkMenu(b,  "help");
 		hm.add(mi = mkMenuItem(b, "help", "about"));
+		mi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new InfoDialog((Frame)parent, "About JabberPoint",
+		"JabberPoint(tm) -- the free, cross-platform slidwshow\n " +
+		"JabberPoint is a primitive slide-show program in Java(tm). It\n" +
+		"is freely copyable as long as you keep this notice and\n" +
+		"the splash screen intact.\n" +
+		"Copyright (c) 1995-1997 by Ian F. Darwin, ian@darwinsys.com.\n" +
+		"Author's version available from http://www.darwinsys.com/").setVisible(true);
+			}
+		});
 		setHelpMenu(hm);		// needed for portability (Motif, etc.).
 
 	}
