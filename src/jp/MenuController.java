@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.*;
+import javax.swing.*;
 
 /** This is the Menu Controller for the View.
  * <P>
@@ -29,19 +31,35 @@ public class MenuController extends MenuBar {
 		fm.add(mi = mkMenuItem(b, "file", "open"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				model.loadFile(null);
+				Accessor xacc = Accessor.getInstance("test.xml");
+				try {
+					xacc.loadFile(model, "test.xml");
+				} catch (IOException ex) {
+					JOptionPane.showMessageDialog(parent,
+						"IOException: " + ex, "Load Error",
+						JOptionPane.ERROR_MESSAGE);
+				}
+				parent.repaint();
 			}
 		});
 		fm.add(mi = mkMenuItem(b, "file", "new"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				model.newFile();
+				model.clear();
+				parent.repaint();
 			}
 		});
 		fm.add(mi = mkMenuItem(b, "file", "save"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				model.saveFile(null);
+				Accessor xacc = Accessor.getInstance("dump.xml");
+				try {
+					xacc.saveFile(model, "dump.xml");
+				} catch (IOException ex) {
+					JOptionPane.showMessageDialog(parent,
+						"IOException: " + ex, "Save Error",
+						JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		fm.addSeparator();
@@ -60,29 +78,32 @@ public class MenuController extends MenuBar {
 				model.nextPage();
 			}
 		});
-		vm.add(mi = mkMenuItem(b, "view", "previous"));
+		vm.add(mi = mkMenuItem(b, "view", "prev"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.prevPage();
 			}
 		});
+		vm.add(mi = mkMenuItem(b, "view", "goto"));
+		mi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String pnStr = JOptionPane.showInputDialog(
+					(Object)"Page number?");
+				int pn = Integer.parseInt(pnStr);
+				model.setSlideNumber(pn);
+			}
+		});
 		vm.addSeparator();
 		vm.add(mi = mkMenuItem(b, "view", "slideshow"));
 		vm.add(mi = mkMenuItem(b, "view", "outline"));
-		vm.add(mi = mkMenuItem(b, "view", "slidesorter"));
+		vm.add(mi = mkMenuItem(b, "view", "sorter"));
 		add(vm);
 
 		Menu hm = mkMenu(b,  "help");
 		hm.add(mi = mkMenuItem(b, "help", "about"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new InfoDialog((Frame)parent, "About JabberPoint",
-		"JabberPoint(tm) -- the free, cross-platform slidwshow\n " +
-		"JabberPoint is a primitive slide-show program in Java(tm). It\n" +
-		"is freely copyable as long as you keep this notice and\n" +
-		"the splash screen intact.\n" +
-		"Copyright (c) 1995-1997 by Ian F. Darwin, ian@darwinsys.com.\n" +
-		"Author's version available from http://www.darwinsys.com/").setVisible(true);
+				AboutBox.show(parent);
 			}
 		});
 		setHelpMenu(hm);		// needed for portability (Motif, etc.).

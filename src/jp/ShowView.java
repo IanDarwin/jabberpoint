@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 import java.util.*;
 
 /** JabberPoint Show View.
@@ -11,24 +12,26 @@ import java.util.*;
  * @author Ian F. Darwin, ian@darwinsys.com
  * @version $Id$
  */
-public class ShowView extends Component implements Observer {
+public class ShowView extends JComponent implements Observer {
+
 	/** The collection of M's on the current page */
-	Slide slide;
+	protected Slide slide;
 	/** Our preferred Width */
-	int prefWidth;
+	protected int prefWidth;
 	/** Our preferred Height */
-	int prefHeight;
+	protected int prefHeight;
 	/** The label font */
-	Font labelFont = null;
+	protected Font labelFont = null;
 	/** The Model */
-	Model model = null;
+	protected Model model = null;
 
 	/** Construct a ShowView */
-	ShowView() {
+	ShowView(Model m) {
 		setBackground(Color.white);
 		Dimension them = Toolkit.getDefaultToolkit().getScreenSize();
 		prefWidth = them.width;
 		prefHeight = them.height;
+		model = m;
 		labelFont = new Font("Dialog", Font.BOLD, 10);
 	}
 
@@ -42,7 +45,11 @@ public class ShowView extends Component implements Observer {
 
 	public void update(Observable model, Object data) {
 		if (!(model instanceof Model))
-			throw new IllegalArgumentException("Wimpout 1");
+			throw new IllegalArgumentException("Internal error: model not Model");
+		if (data == null) {
+			repaint();
+			return;
+		}
 		if (!(data instanceof Slide))
 			throw new IllegalArgumentException("Observable gave bad Slide");
 		model = (Model)model;
@@ -50,38 +57,58 @@ public class ShowView extends Component implements Observer {
 		repaint();
 	}
 
-	/** The Paint routine, draw the text */
+	/** The paint routine: draw the text and other goo of this slide. */
 	public void paint(Graphics g) {
-		int y = 75;
+
 		int indent;
+		int y = 20;
+
+		// Clear the screen
+		g.setColor(Color.white);
+		g.fillRect(0, 0, getSize().width, getSize().height);
+
+		if (model.pageNumber < 0)
+			return;
+
 		if (slide == null) {
-			// System.err.println("ShowView.paint called while slide is null");
+			System.err.println("ShowView.paint called while slide is null");
 			return;
 		}
+
 		Vector v = slide.getMs();
 		if (v == null) {
 			System.err.println("ShowView.paint: getMs() yields null");
 			return;
 		}
-		if (model != null)
-			g.drawString("Slide " + model.getCurrentNumber() + " of " + model.getSize(),
-				getSize().width-150, getSize().height-70);
+
+		g.setFont(labelFont);
+		g.setColor(Color.black);
+		g.drawString("Slide " + (1+model.getSlideNumber()) + " of " +
+			model.getSize(),
+			600, 30);
+
+		// Handle title specially
+		M m = new MText(0, slide.getTitle());
+		Style s = JabberPoint.getStyle(0);
+		g.setFont(s.font);
+		m.draw(0, y, g, s, this);
+		y += m.getBBox(this).height;
 
 		for (int i=0; i<v.size(); i++) {
-			g.setFont(labelFont);
-			M m = (M)v.elementAt(i);
+			m = (M)v.elementAt(i);
 			// System.out.println(m);
-			Style s = JabberPoint.styles[m.level];
-			if (m.level == 0)
-				indent = (getSize().width-m.getBBox(this).width)/2;
-			else
+			s = JabberPoint.getStyle(m.level);
+			g.setFont(s.font);
+			Dimension box = m.getBBox(this);
+			// if (m.level == 0)
+				// indent = (getSize().width-box.width)/2;
+			// else
 				indent = s.indent;
 
 			// DRAW IT
 			m.draw(indent, y, g, s, this);
 
-			y += s.leading; // XXX wrong if image!
+			y += box.height;
 		}
 	}
-
 }

@@ -3,7 +3,10 @@
 # jp - front end for JabberPoint slideshow program
 # $Id$
 
+JPHOME=/home/ian/src/jabberpoint
+CLASSPATH=$CLASSPATH:${JPHOME}
+
 case $* in
 	0)	echo "Usage: jp file" >&2;;
-	*)	java JabberPoint $*
+	*)	java -DJABBERPOINTHOME=${JPHOME} JabberPoint $*
 esac

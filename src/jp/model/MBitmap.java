@@ -48,7 +48,7 @@ public class MBitmap extends M {
 	}
 
 	public void draw(int x, int y, Graphics g, Style s, ImageObserver o) {
-		System.out.println("Drawing " + image + " at " + x + "," + y);
+		// System.out.println("Drawing " + image + " at " + x + "," + y);
 		g.drawImage(image, x, y, o);
 	}
 

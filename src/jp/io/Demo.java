@@ -1,18 +1,18 @@
-public class Demo {
+/*
+ * Run a built-in demo.
+ */
+class Demo extends Accessor {
 
-	protected Model model;
-
-	public Demo(Model m) {
-		model = m;
+	Demo(String fn) {
+		super(fn);
 	}
 
 	/** Run a demo for testing */
-	public void loadDemo() {
+	public void loadFile(Model m, String unusedFilename) {
 		Slide s;
 
 		s = new Slide();
-		model.append(s);
-		s.append(0, "JabberPoint");
+		s.setTitle("JabberPoint");
 		s.append(1, "The Java Presentation Tool");
 		s.append(2, "Copyright (c) 1996-2000 Ian Darwin");
 		s.append(1, "Invoking JabberPoint with");
@@ -21,10 +21,10 @@ public class Demo {
 		s.append(2, "Next Page: PgDn or Enter");
 		s.append(2, "Prev Page: PgUp or up-arrow");
 		s.append(2, "To exit: q or Q");
+		m.append(s);
 
 		s = new Slide();
-		model.append(s);
-		s.append(0, "JabberPoint Styles Demonstration");
+		s.setTitle("JabberPoint Styles Demonstration");
 		s.append(1, "Main Point");
 		s.append(2, "Sub Point");
 		s.append(1, "A Far Point");
@@ -33,15 +33,20 @@ public class Demo {
 		s.append(2, "Sub Point");
 		s.append(3, "SubSub Point");
 		s.append(4, "SubSubSub Point");
+		m.append(s);
 
 		// Page 2
 		s = new Slide();
-		model.append(s);
-		s.append(0, "Slide The Second");
+		s.setTitle("Slide The Third");
 		s.append(1, "Main Point of Slide 2");
 		s.append(2, "To load a file here, use File->Open");
-		s.append(1, "");
+		s.append(1, " ");
 		s.append(1, "This is the end of the show.");
 		s.append(new MBitmap(1, "JabberPoint.jpg"));
+		m.append(s);
+	}
+
+	public void saveFile(Model m, String unusedFilename) {
+		throw new IllegalStateException("Called Save As->Demo!");
 	}
 }

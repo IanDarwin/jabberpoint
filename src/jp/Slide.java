@@ -10,8 +10,12 @@ import java.util.Vector;
  * @version $Id$
  */
 public class Slide {
+
+	/** Each slide has a title */
+	protected String title;
+
 	/** each page contains a Vector of M's */
-	Vector ms;
+	protected Vector ms;
 
 	public Slide() {
 		ms = new Vector();
@@ -23,13 +27,11 @@ public class Slide {
 	}
 
 	public String getTitle() {
-		if (ms.size() == 0) {
-			return "UNTITLED SLIDE";
-		}
-		M m = getM(0);
-		if (!(m instanceof MText))
-			return "SLIDE WITH INVALID TITLE";
-		return ((MText)m).getText();
+		return title;
+	}
+
+	public void setTitle(String nt) {
+		title = nt;
 	}
 
 	/** Append a String.
