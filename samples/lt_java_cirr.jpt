@@ -26,7 +26,7 @@ The Introductory Courses
 	These courses explain
 		The Java language
 		Using the basic Java APIs
-	Courses 471 and 477 share a number of modules
+	Courses 471 and 478 share a number of modules
 		AWT Graphics and Printing
 		Input/Output
 		AWT GUI and Applets
@@ -118,14 +118,14 @@ Object-Oriented Review
 	To bring together what they've learned about Java
 	And what they've learned about Objects
 	To keep them learning about both after "re-entry"
-Course 477, Java for C++ Programmers
+Course 478, Java for C++ Programmers
 	Similar to 471, but optimized for "advanced" developers who know C++ and OOP
 		Omits "Introduction to OOD/OOP"
 		Covers syntax more briskly
 		Spends more time on extra APIs
 			Reflectance
 			JavaBeans
-Course 477 Chapters
+Course 478 Chapters
 	Introduction
 	From C++ to Java
 	AWT Graphics and Printing
@@ -137,14 +137,14 @@ Course 477 Chapters
 	Native Code
 	JavaBeans
 	API Overview
-Course 477 In Detail
+Course 478 In Detail
 	As you can see, several chapters are the same:
 		AWT Graphics and Printing, Input/Output,
 		AWT GUI and Applets, Threaded Java,
 		Sockets and Networking, Native Code, API Overview
 	Except that they have different hands-on exercises
 		471 has a series of excercises around the theme of a business application taking credit card numbers on the Web
-		477 has a cumulative "build a customized browser" series of exercises
+		478 has a cumulative "build a customized browser" series of exercises
 	We will only discuss the chapters that are substantially different
 From C++ to Java
 	A detailed syntax introduction

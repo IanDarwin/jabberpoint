@@ -9,13 +9,16 @@
 	<property name="deploy.dir" value="/home/ian/classes/ext"/>
 	<property name="deploy.jar" value="jabberpoint.jar"/>
 
+	<!-- REQUIRED JARS -->
+	<property name="jdom.jar" value="lib/jdom.jar"/>
+
 	<target name="init">
 		<tstamp/> <!-- Set time stamp variables in case we need 'em-->
 		<mkdir dir="${build}"/> <!-- Ensure build directory exists -->
 	</target>
 
 	<target name="compile" depends="init">
-		<javac srcdir="${src}" destdir="${build}" />
+		<javac srcdir="${src}" classpath="${jdom.jar}" destdir="${build}" />
 	</target>
 
 	<target name="jar" depends="compile">
