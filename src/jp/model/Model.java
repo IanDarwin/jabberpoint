@@ -95,6 +95,7 @@ public class Model extends Observable {
 		setChanged();				// for the Observers (required!)
 		notifyObservers(getPage());	// tell the observers the current page
 	}
+
 	/** Move to the previous page, unless at beginning */
 	public void prevPage() {
 		if (pageNumber > 0)

@@ -4,6 +4,7 @@
 // This example is provided WITHOUT WARRANTY either expressed or implied.
 
 // Warmed over by Ian Darwin for use in JabaDex
+// In Java 2, replace this whole mess with JOptionPane.showMessageDialog(...);
 
 import java.awt.*;
 import java.awt.event.*;
