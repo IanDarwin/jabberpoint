@@ -41,8 +41,10 @@ public class Jabber2HTML {
 		tocFile.println("<HTML>");
 		tocFile.println("<!-- made by $Id$");
 		tocFile.println(" -->");
+		tocFile.println("<LINK REL=\"stylesheet\" TYPE=\"text/css\" HREF=\"stylesheet.css\" TITLE=\"Style\">");
+		tocFile.println("<BODY BGCOLOR=WHITE>");
 		tocFile.println("<TITLE>"+model.getTitle()+": Table of Content</TITLE>");
-		mkNavigator(tocFile, "", TOCFILENAME, TOCFILENAME, mkFileName(1));
+		mkNavigator(tocFile, "Contents Page", TOCFILENAME, TOCFILENAME, mkFileName(1));
 		tocFile.println("<H1 ALIGN=CENTER>"+model.getTitle()+": Table of Content</H1>");
 		tocFile.println("<OL>");
 

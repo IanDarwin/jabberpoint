@@ -1,0 +1,26 @@
+/* Style Sheet for PRESENTATIONS
+ * This is the web: go ahead and borrow this page, but change it for 
+ * your own web, and pass it on with the same terms of re-use.
+ * $Id$
+ */
+
+/* Attributes named after an HTML element apply to all occurrences of type. */
+
+/* Page attributes */
+body	{ background-color: #ffffff"; color: #000; link-color: #000; vlink-color: #660099; alink-color: #FF0000 }
+
+/* Paragraph formats: use generic, non-vendor specific names (no Arial) */
+H1	{ size: +6; color: red ; font-family: Helvetica, sans-serif ; align: center}
+H2	{ size: +4; color: blue; font-family: Helvetica, sans-serif }
+H3	{ size: +2; color: blue; font-family: Helvetica, sans-serif }
+H4	{ size: +1; color: blue; font-family: Helvetica, sans-serif }
+
+/* Attributes named with a "#" can apply to any element but only if ID= used. */
+
+/* Heading colors */
+#Nav   { color: #FFFFFF; font-family: Helvetica, sans-serif }
+
+/* Link colors */
+#LinkLocal   { color: #00FF00 } /* green */
+#LinkRemote  { color: #ff0000 } /* red  */
+
