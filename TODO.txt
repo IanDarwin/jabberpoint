@@ -1,0 +1,16 @@
+Fix page numbers off by one between model and view.
+
+Fixup MenuController load/save to use JFileChooser.
+
+ShowView to use a JWindow, JFrame showing TextView.
+
+MText to display using getSize() on ShowView, not 800x600.
+
+TextView (list in scrollpane?).
+
+Observer  - must have object types for passing into views,
+	SlideInserted, SlideDeleted, SlideMoved?, SlideTextChanged, ...
+
+JAG's slide program has the preview slide on the left and the text
+view on the right - no sorter view. Handle D&D. Has own alg for fitting
+point sizes; runs in own bg thread.
