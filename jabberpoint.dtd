@@ -1,0 +1,14 @@
+<!--
+ Document Type Definition for JabberPoint Slide Shows
+ $Id$
+ -->
+<!ELEMENT slideshow (head,slide+)>
+<!ELEMENT head (title)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT slide (title, (h1|h2|h3|h4|h5|h6)+)>
+<!ELEMENT h1 (#PCDATA)>
+<!ELEMENT h2 (#PCDATA)>
+<!ELEMENT h3 (#PCDATA)>
+<!ELEMENT h4 (#PCDATA)>
+<!ELEMENT h5 (#PCDATA)>
+<!ELEMENT h6 (#PCDATA)>
