@@ -32,4 +32,9 @@ public abstract class M {
 
 	public abstract void draw(int x, int y, Graphics g, Style s,
 		ImageObserver o);
+
+	public String toString() {
+		return "Class " + getClass().getName() + " doesn't provide toString()";
+	}
+
 }

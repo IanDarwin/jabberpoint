@@ -60,10 +60,10 @@ public abstract class Accessor {
 			}
 		}
 		if (fileName.endsWith(".xml"))
-			return new AccessorJDOM(fileName);
+			return (Accessor)new AccessorJDOM(fileName);
 		if (fileName.equals(DEMO_NAME))
 			return new Demo(DEMO_NAME);
-		return new AccessorText(fileName);
+		return (Accessor)new AccessorText(fileName);
 	}
 
 	protected Accessor(String fn) {

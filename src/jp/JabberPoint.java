@@ -19,7 +19,9 @@ public class JabberPoint {
 	/** The model */
 	protected Model model;
 	/** The view */
-	protected static ShowView view;
+	protected static ShowView slideView;
+	/** Other View */
+	protected static JList textView;
 	/** The styles */
 	protected static Style[] styles;
 
@@ -46,22 +48,29 @@ public class JabberPoint {
 	JabberPoint() {
 
 		model = new Model();
-		view = new ShowView(model);
-		model.addObserver(view);		// view,
+		slideView = new ShowView(model);
+		textView = new JList(model);
+		model.addObserver(slideView);		// view,
 
 		frame = new JFrame("JabberPoint 0.0");	// GUI
-        frame.addWindowListener(new WindowAdapter() {
+		JSplitPane pane = new JSplitPane(
+			JSplitPane.HORIZONTAL_SPLIT, slideView, textView);
+		frame.setContentPane(pane);
+
+		//frame.pack();
+		UtilGUI.maximize(frame);
+		pane.setResizeWeight(0.4);
+		frame.setVisible(true);
+
+		frame.addKeyListener(new KeyController(model));	// and a controller.
+		frame.setMenuBar(new MenuController(frame, model));	// Another one.
+
+        frame.addWindowListener(new WindowAdapter() {	// Last controller.
 			public void windowClosing(WindowEvent e) {
+				// XXX save changes here
 				System.exit(0);
 			}
 		});
-		frame.getContentPane().add(view);
-		//frame.pack();
-		UtilGUI.maximize(frame);
-		frame.setVisible(true);
-
-		frame.addKeyListener(new KeyController(model));	// and controller.
-		frame.setMenuBar(new MenuController(frame, model));	// Another controller
 
 		styles = new Style[5];
 		// Presumably these will come from a file

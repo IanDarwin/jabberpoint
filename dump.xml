@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE slideshow SYSTEM "jabberpoint.dtd">
+<slideshow>
+<head>
+<title>JabberPoint</title>
+</head>
+<slide>
+<title>Slide One</title>
+<h1>The Java Presentation Tool</h1>
+<h2>Copyright (c) 1996-2000 Ian Darwin</h2>
+<h1>Invoking JabberPoint with</h1>
+<h1>no file argument runs this show</h1>
+<h1>To move around:</h1>
+<h2>Next Page: PgDn or Enter</h2>
+<h2>Prev Page: PgUp or up-arrow</h2>
+<h2>To exit: q or Q</h2>
+</slide>
+<slide>
+<title>Slide One</title>
+<h1>Main Point</h1>
+<h2>Sub Point</h2>
+<h1>A Far Point</h1>
+<h1>A Powerful Point</h1>
+<h1>A Jabberful Point</h1>
+<h2>Sub Point</h2>
+<h3>SubSub Point</h3>
+<h4>SubSubSub Point</h4>
+</slide>
+<slide>
+<title>Slide The Third</title>
+<h1>Main Point of Slide 2</h1>
+<h2>To load a file here, use File->Open</h2>
+<h1> </h1>
+<h1>This is the end of the show.</h1>
+</slide>
+</slideshow>

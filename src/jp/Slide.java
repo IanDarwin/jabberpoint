@@ -1,4 +1,4 @@
-import java.util.Vector;
+import java.util.*;
 
 /** Represents one slide in a slideshow.
  * <P>
@@ -14,16 +14,16 @@ public class Slide {
 	/** Each slide has a title */
 	protected String title;
 
-	/** each page contains a Vector of M's */
-	protected Vector ms;
+	/** each page contains a List of M's */
+	protected List ms;
 
 	public Slide() {
-		ms = new Vector();
+		ms = new ArrayList();
 	}
 
 	/** Append an M. */
 	public void append(M anItem) {
-		ms.addElement(anItem);
+		ms.add(anItem);
 	}
 
 	public String getTitle() {
@@ -44,11 +44,11 @@ public class Slide {
 
 	/** Get the given M (line or image) */
 	public M getM(int n) {
-		return (M)ms.elementAt(n);
+		return (M)ms.get(n);
 	}
 
-	/** Get the Vector of all Ms */
-	public Vector getMs() {
+	/** Get the List of all Ms */
+	public List getMs() {
 		return ms;
 	}
 

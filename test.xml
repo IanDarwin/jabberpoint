@@ -1,0 +1,15 @@
+<!DOCTYPE slideshow SYSTEM "jabberpoint.dtd">
+<slideshow>
+<head><title>A Demo Slideshow</title></head>
+<slide>
+	<title>Slide One</title>
+	<h1>Main Point</h1>
+	<h2>Sub-point</h2>
+	<h3>Sub-point</h3>
+</slide>
+<slide>
+	<title>Slide Two</title>
+	<h1>Main Point</h1>
+	<h1>Main Point Two</h1>
+</slide>
+</slideshow>

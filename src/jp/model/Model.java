@@ -1,3 +1,5 @@
+import javax.swing.*;
+import javax.swing.event.*;
 import java.util.*;
 
 /**
@@ -13,7 +15,11 @@ import java.util.*;
  * @author Ian F. Darwin, ian@darwinsys.com
  * @version $Id$
  */
-public class Model extends Observable {
+
+// XXX Need both ListChangedEvents and ListSelectionEvents
+// XXX for different methods here!
+
+public class Model extends Observable implements ListModel {
 	/** The slideshow title */
 	protected String showTitle;
 
@@ -28,13 +34,13 @@ public class Model extends Observable {
 		clear();
 	}
 
+	java.awt.Component view;
+
 	// Methods used in the Controller(s) to control
 	// what part of the data the view displays:
 
 	/** Return the number of slides */
 	public int getSize() {
-		if (showList == null)
-			return 0;
 		return showList.size();
 	}
 
@@ -53,13 +59,19 @@ public class Model extends Observable {
 
 	/** Set the current page(slide) number, and notify all the view(s).
 	 */
-	public void setSlideNumber(int i) {
+	public void setSlideNumber(int slNumber) {
 
-		pageNumber = i;
+		pageNumber = slNumber;
 
 		// tell the observers the current page
 		setChanged();				// for the Observers (required!)
-		notifyObservers(i==-1?null:getCurrentSlide());	
+		notifyObservers(slNumber==-1?null:getCurrentSlide());	
+
+		// ListSelectionEvent evt = new ListDataEvent(view,
+		// 	slNumber, slNumber, false);
+		// for (int i=0; i<listenersList.size(); i++) {
+		// 	((ListDataListener)listenersList.get(i)).valueChanged(evt);
+		// }
 	}
 
 	/** Move to the previous page, unless at beginning */
@@ -86,17 +98,31 @@ public class Model extends Observable {
 		showList.add(s);
 	}
 
-	/** Retrieve a given slide */
+	/** Retrieve a given slide, as seen by rest of program */
 	public Slide getSlide(int n) {
 		return (Slide)showList.get(n);
 	}
 
+	/** Retrieve a given slide, as used by JList and ListModel */
+	public Object getElementAt(int n) {
+		return showList.get(n);
+	}
+
 	/** Retrieve the current slide */
 	public Slide getCurrentSlide() {
-		return getSlide(pageNumber);
+		return getSlide(getSlideNumber());
 	}
 
 	public void exit(int n) {
 		System.exit(n);
+	}
+
+	private java.util.List listenersList = new ArrayList();
+
+	public void addListDataListener(ListDataListener l) {
+		listenersList.add(l);
+	}
+	public void removeListDataListener(ListDataListener l) {
+		listenersList.remove(l);
 	}
 }

@@ -75,7 +75,7 @@ public class ShowView extends JComponent implements Observer {
 			return;
 		}
 
-		Vector v = slide.getMs();
+		java.util.List v = slide.getMs();
 		if (v == null) {
 			System.err.println("ShowView.paint: getMs() yields null");
 			return;
@@ -95,7 +95,7 @@ public class ShowView extends JComponent implements Observer {
 		y += m.getBBox(this).height;
 
 		for (int i=0; i<v.size(); i++) {
-			m = (M)v.elementAt(i);
+			m = (M)v.get(i);
 			// System.out.println(m);
 			s = JabberPoint.getStyle(m.level);
 			g.setFont(s.font);
