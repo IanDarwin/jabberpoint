@@ -1,6 +1,14 @@
 import java.awt.event.*;
 
-/** This is the KeyController (KeyListener) for the View */
+/** This is the KeyController (KeyListener) for the View 
+ * <P>
+ * This program is distributed under the terms of the accompanying
+ * COPYRIGHT.txt file (which is NOT the GNU General Public License).
+ * Please read it. Your use of the software constitutes acceptance
+ * of the terms in the COPYRIGHT.txt file.
+ * @author Ian F. Darwin, ian@darwinsys.com
+ * @version $Id$
+ */
 public class KeyController extends KeyAdapter {
 	/** The Model which we are controlling */
 	Model model;

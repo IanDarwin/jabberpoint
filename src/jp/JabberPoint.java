@@ -1,7 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
 
-/** JabberPoint Main Program */
+/** JabberPoint Main Program
+ * <P>
+ * This program is distributed under the terms of the accompanying
+ * COPYRIGHT.txt file (which is NOT the GNU General Public License).
+ * Please read it. Your use of the software constitutes acceptance
+ * of the terms in the COPYRIGHT.txt file.
+ * @author Ian F. Darwin, ian@darwinsys.com
+ * @version $Id$
+ */
 public class JabberPoint {
 	/** The Frame for the ShowView */
 	protected Frame frame;
