@@ -1,3 +1,3 @@
 #!/bin/sh -f
 set -x
-jikes JabberPoint.java
+jikes +E JabberPoint.java

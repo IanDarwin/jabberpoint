@@ -16,9 +16,20 @@ public class Slide {
 	public Slide() {
 		ms = new Vector();
 	}
-	public void append(int lev, String msg) {
-		ms.addElement(new MText(lev, msg));
+
+	/** Append an M. */
+	public void append(M anItem) {
+		ms.addElement(anItem);
 	}
+
+	/** Append a String.
+	 * <P>This is a convenience routine for 
+	 * <BR>append(new MText(lev, String));
+	 */
+	public void append(int lev, String msg) {
+		append(new MText(lev, msg));
+	}
+
 	public Vector getMs() {
 		return ms;
 	}

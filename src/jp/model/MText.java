@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.ImageObserver;
 
 /** The data model, for one TEXT item.
  * <P>
@@ -25,12 +26,12 @@ public class MText extends M {
 		this(0, "NO TEXT GIVEN");
 	}
 
-	public Dimension getBBox() {
+	public Dimension getBBox(ImageObserver o) {
 		FontMetrics fm = JabberPoint.view.getFontMetrics(JabberPoint.styles[level].font);
 		return new Dimension(fm.stringWidth(label), fm.getAscent());
 	}
 
-	public void draw(int x, int y, Graphics g, Style s) {
+	public void draw(int x, int y, Graphics g, Style s, ImageObserver o) {
 		g.setFont(s.font);
 		g.setColor(s.color);
 		g.drawString(label, x, y);

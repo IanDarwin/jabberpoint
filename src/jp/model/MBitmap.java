@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.ImageObserver;
 
 /** The data model, for one BITMAP item.
  * <P>
@@ -15,36 +16,37 @@ public class MBitmap extends M {
 	protected int level = 0;
 
 	/** The Image, if it's a valid bitmap */
-	protected Image im;
+	protected Image image;
 	/** The image name */
-	protected String imName;
+	protected String imageName;
 
-	/** Construct an M given type, level and String */
+	/** Construct an MBitmap given type, level and String */
 	public MBitmap(int lev, String name) {
 		level = lev;
-		imName = name;
-		if (imName == null) {
+		imageName = name;
+		if (imageName == null) {
 			// warn("Null bitmap filename");
 			return;
 		}
-		im = Toolkit.getDefaultToolkit().getImage(imName);
+		image = Toolkit.getDefaultToolkit().getImage(imageName);
 	}
 
 	/** Construct an M with no data */
 	public MBitmap() {
 		level = 0;
-		label = null;
+		image = null;
 	}
 
-	public Dimension getBBox() {
-		return new Dimension(im.width, im.height);
+	public Dimension getBBox(ImageObserver o) {
+		return new Dimension(image.getWidth(o), image.getHeight(o));
 	}
 
-	public void draw(int x, int y, Graphics g, Style s) {
-		g.drawImage(im, x, y);
+	public void draw(int x, int y, Graphics g, Style s, ImageObserver o) {
+		System.out.println("Drawing " + image + " at " + x + "," + y);
+		g.drawImage(image, x, y, o);
 	}
 
 	public String toString() {
-		return "MBitmap[" + level + "," + name + "]";
+		return "MBitmap[" + level + "," + imageName + "]";
 	}
 }

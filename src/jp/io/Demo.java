@@ -42,5 +42,6 @@ public class Demo {
 		s.append(2, "To load a file here, use File->Open");
 		s.append(1, "");
 		s.append(1, "This is the end of the show.");
+		s.append(new MBitmap(1, "JabberPoint.jpg"));
 	}
 }

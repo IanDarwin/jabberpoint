@@ -65,19 +65,22 @@ public class ShowView extends Component implements Observer {
 		}
 		if (model != null)
 			g.drawString("Slide " + model.getCurrentNumber() + " of " + model.getSize(),
-				getSize().width-150, getSize().height-30);
+				getSize().width-150, getSize().height-70);
+
 		for (int i=0; i<v.size(); i++) {
 			g.setFont(labelFont);
 			M m = (M)v.elementAt(i);
 			// System.out.println(m);
 			Style s = JabberPoint.styles[m.level];
 			if (m.level == 0)
-				indent = (getSize().width-m.getBBox().width)/2;
+				indent = (getSize().width-m.getBBox(this).width)/2;
 			else
 				indent = s.indent;
-			// System.out.println(s);
-			m.draw(indent, y, g, s);
-			y += s.leading;
+
+			// DRAW IT
+			m.draw(indent, y, g, s, this);
+
+			y += s.leading; // XXX wrong if image!
 		}
 	}
 

@@ -1,5 +1,5 @@
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
+import java.awt.image.ImageObserver;
 
 /** The data model, for one item.
  * <P>
@@ -24,7 +24,8 @@ public abstract class M {
 		level = 0;
 	}
 
-	public abstract Dimension getBBox();
+	public abstract Dimension getBBox(ImageObserver o);
 
-	public abstract void draw(int x, int y, Graphics g, Style s);
+	public abstract void draw(int x, int y, Graphics g, Style s,
+		ImageObserver o);
 }
