@@ -1,0 +1,211 @@
+Learning Tree Java Presentation
+	Sun Canada/OPCOM
+	October 2, 1997
+	Ian Darwin, Learning Tree
+		Contract Instructor
+	Graham Moore, Learning Tree
+		Toronto On-Site Rep
+The Java Cirriculum Illustrated
+	See the Cirriculum Diagram
+The Java Cirriculum Explained
+	A progression of courses
+		introductory
+		specialized
+	Introductory courses
+		471: Java Programming Hands-On
+		478: Java Programming for C++
+	Specialized Courses
+		472: Java Enterprise Programming
+			JDBC, RMI, IDL, etc.
+		477: Java "Multimedia" (advanced AWT)
+			Graphics, MVC in detail, Observer/Observable, Images, ...
+		476: Java and Microsoft VJ++
+The Introductory Courses
+	Introductory courses are normally 4 days, can be 5 for on-sites
+	These courses explain
+		The Java language
+		Using the basic Java APIs
+	Courses 471 and 477 share a number of modules
+		AWT Graphics and Printing
+		Input/Output
+		AWT GUI and Applets
+		Threads
+		Networking
+		API Overview
+Introductory Course Author
+	Learning Tree authors are contract professionals who work in the field they write about
+	Both 471 and 478 were written and are kept up-to-date by Ian Darwin
+	Mr. Darwin is a software professional with 25 years' experience covering systems from MVT/MVS to CP/M, TOPS-10 to DOS, and (mostly) UNIX
+	He has written in assembler, Pascal, C, C++ and Java
+	Has worked and taught at University of Toronto, SoftQuad, Sun Micro/OPCOM, written for SunExpert and O'Reilly, and elsewhere
+	The author of three Learning Tree courses (the other one is on UNIX)
+Hands-On Courses
+	All courses in the Java Cirriculum are "hands-on" courses
+	Short "do-now" exercises involving using tools and running existing code
+	Longer Hands-On Exercises, usually one per chapter
+	Detailed instructions in the Exercise Manual
+	Hints, Skeleton Solutions and Full Solutions online and in Notes
+Course 471, Introduction to Java: Chapters
+	Introduction
+	Java in Action: Cool Applets
+	Object Oriented Programming & Design
+	Java Syntax and Features
+	AWT Graphics and Printing
+	Classes, Interfaces & Packages
+	AWT GUI and Applets
+	Threads
+	Input/Output
+	Networking
+	Native Code
+	API Overview
+	Object-Oriented Review
+Course 471 In Detail
+	Let us look at each of the chapters briefly
+	What it covers
+	Hands-On where applicable
+Java in Action: Cool Applets
+	HTML, Applets, Demos
+	APPLET tag and PARAM
+	Hands-On: add a link to the "Cannon" applet & fire it!
+Object Oriented Programming & Design
+	A gentle introduction
+Java Syntax and Features
+	The basics, from the ground up
+	Hands-On: Simple Java program, and adding Error Handling
+AWT Graphics and Printing
+	AWT Introduction
+	Graphics, Fonts, Colors
+	Paint methods
+	Images: constructing and using
+	Hands-On: Drawing geometric shapes
+Classes, Interfaces & Packages
+	How Java does OOP
+	Hands-On: A RangeChecker class
+AWT GUI and Applets
+	The basics of making AWT GUIs
+	Using the AWT to build reasonable applications
+	Components, Layouts
+	Using Listeners to structure the code
+	Subclassing and Dialogs
+	Applet- and Application-specific APIs
+	Hands-On: A Selection Applet
+Threads
+	What, why, how
+	Uses: Animation, Video, Timeouts
+	Hands-On: Threaded Applet
+Input/Output
+	Reading and Writing
+	Pipes and Filters
+	File/Directory Information
+	Hands-On: Directory Information
+Networking
+	Technology Overview
+	URLs: constructing, using, showDocument()
+	TCP Sockets:
+		echo client
+		basic HTTP server
+	Other Technologies
+	Hands-On: Connect to a server and exchange data
+Native Code
+	What, why, why not?
+	How to
+API Overview
+	A summary of all of the major Sun and non-Sun APIS
+	Present and Future
+	Windowed and non-Windowed
+Object-Oriented Review
+	To bring together what they've learned about Java
+	And what they've learned about Objects
+	To keep them learning about both after "re-entry"
+Course 477, Java for C++ Programmers
+	Similar to 471, but optimized for "advanced" developers who know C++ and OOP
+		Omits "Introduction to OOD/OOP"
+		Covers syntax more briskly
+		Spends more time on extra APIs
+			Reflectance
+			JavaBeans
+Course 477 Chapters
+	Introduction
+	From C++ to Java
+	AWT Graphics and Printing
+	Input/Output
+	AWT GUI and Applets
+	Threaded Java
+	Sockets and Networking
+	Classes As Data
+	Native Code
+	JavaBeans
+	API Overview
+Course 477 In Detail
+	As you can see, several chapters are the same:
+		AWT Graphics and Printing, Input/Output,
+		AWT GUI and Applets, Threaded Java,
+		Sockets and Networking, Native Code, API Overview
+	Except that they have different hands-on exercises
+		471 has a series of excercises around the theme of a business application taking credit card numbers on the Web
+		477 has a cumulative "build a customized browser" series of exercises
+	We will only discuss the chapters that are substantially different
+From C++ to Java
+	A detailed syntax introduction
+	Based entirely on knowing C++
+	Summary of differences
+	"What the C++ Programmer Misses"
+		e.g., templates
+		How to work around
+Classes As Data
+	Included since it gives a model for processing large data structures
+		Interesting in its own right; very useful to some programmers
+	The Reflectance API and ClassLoader
+	Code Walkthrough: A CrossReference Program
+	Hands-On: Write an Applet Viewer
+JavaBeans
+	What's a Component Architecture?
+	How JavaBeans Fits In
+	Beans vs CaptiveX
+	Demonstration using BDK
+	Code Walkthrough: A Charting Bean
+Extensibility
+	Both courses have in Appendix D a series of "extra" modules
+	The list of these is expanded as time permits, but includes
+		ClassLoader
+			building and running a simple ClassLoader
+		Colors
+			Extending java.awt.Color with X Color Database)
+		Internationalization
+			build a Frame with an internationalized menu 
+		Layout Managers
+			Code Walkthrough: a simple "relXY" layout manager
+Delivery
+	Both courses customarily run on a LAN with the following setup:
+		Solaris 2.x running Web server for files
+			Also with OpenWindows to show cross-platform Java
+		Windows'95 clients
+	The Web Server also has source for:
+		a number of code-walkthroughs with demos (e.g., CardLayout used as a Login screen)
+		some presentations that go beyond the notes (e.g. on MVC)
+	HOWEVER
+		There are no platform-dependencies in the courses
+		Either course can run with e.g., Solaris clients
+			Or any UNIX, provided a JDK1.1 port is available (SunOS4.1 may be problematic)
+Handout Material
+	All students receive:
+		copies of the course notes and solutions
+		Handout Floppy with links, copies of solutions, copies of all demo code
+	At public courses students receive a handout textbook (Java in a Nutshell); this is optional for on-sites
+Revision Cycle
+	The introductory courses are both updated several times a year
+		particularly when JDK innovation requires incorporation of new material
+		Current revision is JDK1.1.4, Netscape 4.0.2+1.1patch
+	JDK1.1 is covered reasonably well
+		However, due to time limitations, some topics are either:
+			glossed over but material is available (I18N, MVC)
+		or deferred to other courses
+			JDBC to Course 472
+	JDK1.2 will not be covered in as much detail: several new topics are the material for four-day courses
+		JFC: Swing
+		JFC: 2D
+Summary:
+	Learning Tree's Java Cirriculum provides a detailed overview of Java technologies
+	471 and 478 provide detailed, powerful, up-to-date introduction to Java
+	472 covers Enterprise-Wide APIs
+	477 covers numerous advanced topics in AWT

@@ -1,0 +1,1 @@
+javac JabberPoint.java
