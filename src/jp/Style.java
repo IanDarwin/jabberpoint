@@ -1,4 +1,5 @@
 import java.awt.*;
+
 /** Style == Indent, Color, Font and Leading.
  * <P>
  * This program is distributed under the terms of the accompanying
@@ -10,10 +11,15 @@ import java.awt.*;
  */
 public class Style {
 	int indent;
+
 	Color color;
+
 	Font font;
+
 	int fontSize;
+
 	int leading;
+
 	public Style(int in, Color c, int pts, int lead) {
 		indent  = in;
 		color   = c;

@@ -17,7 +17,7 @@ public class Slide {
 		ms = new Vector();
 	}
 	public void append(int lev, String msg) {
-		ms.addElement(new M(M.TEXT, lev, msg));
+		ms.addElement(new MText(lev, msg));
 	}
 	public Vector getMs() {
 		return ms;

@@ -26,7 +26,7 @@ public class JabberPoint {
 		JabberPoint jp = new JabberPoint();
 
 		if (argv.length == 0) // run a demo program
-			jp.doDemo();
+			new Demo(model).loadDemo();
 		else
 			model.loadFile(argv[0]); // read and parse a slideshow file(s)...
 
@@ -57,31 +57,10 @@ public class JabberPoint {
 		styles = new Style[5];
 		// Presumably these will come from a file
 		styles[0] = new Style(100, Color.red,   48, 60);	// title
-		styles[1] = new Style(20, Color.blue,  48, 52);	// main or H1
+		styles[1] = new Style(20, Color.blue,  48, 54);	// main or H1
 		styles[2] = new Style(50, Color.black, 36, 44);	// sub or H2
 		styles[3] = new Style(70, Color.black, 30, 36);	// sub or H3
 		styles[4] = new Style(90, Color.black, 24, 30);	// sub or H4
 
-	}
-
-	/** Run a demo for testing */
-	public void doDemo() {
-		Slide s = new Slide();
-		model.append(s);
-		s.append(0, "JabberPoint Slide Styles Demonstration");
-		s.append(1, "Main Point");
-		s.append(2, "Sub Point");
-		s.append(1, "A Far Point");
-		s.append(1, "A Powerful Point");
-		s.append(1, "A Jabberful Point");
-		s.append(2, "Sub Point");
-		s.append(3, "SubSub Point");
-		s.append(4, "SubSubSub Point");
-		// Page 2
-		s = new Slide();
-		model.append(s);
-		s.append(0, "Slide The Second");
-		s.append(1, "Main Point of Slide 2");
-		s.append(2, "To load a file here, use File->Open");
 	}
 }

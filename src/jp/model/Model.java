@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+
 /**
  * Model is the data model for JabberPoint.
  * It keeps track of all the slides in the presentation.
@@ -16,6 +17,11 @@ public class Model extends Observable {
 	Vector show = null;
 	/** The currently-displayed page */
 	private int pageNumber = 0;
+
+	/** Constructor */
+	public Model() {
+		resetShow();
+	}
 
 	/** Return the number of slides */
 	public int getSize() {
