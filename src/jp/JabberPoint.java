@@ -3,23 +3,24 @@ import java.awt.event.*;
 
 /** JabberPoint Main Program */
 public class JabberPoint {
-	/** The Frame for the View */
-	Frame frame;
+	/** The Frame for the ShowView */
+	protected Frame frame;
 	/** The model */
-	static Model model;
+	protected static Model model;
 	/** The view */
-	static View view;
+	protected static ShowView view;
 	/** The styles */
-	static Style[] styles;
+	protected static Style[] styles;
 
 	/** The Real Main Program */
-	public static void main(String av[]) {
+	public static void main(String argv[]) {
 
 		JabberPoint jp = new JabberPoint();
 
-		// if (argv.length == 0) // run a demo program
-		jp.doDemo();
-		// else read and parse a slideshow file(s)...
+		if (argv.length == 0) // run a demo program
+			jp.doDemo();
+		else
+			model.loadFile(argv[0]); // read and parse a slideshow file(s)...
 
 		// Start view at first page
 		jp.model.setPage(0);
@@ -29,7 +30,7 @@ public class JabberPoint {
 	JabberPoint() {
 
 		model = new Model();			// model,
-		view = new View();
+		view = new ShowView();
 		model.addObserver(view);		// view,
 
 		frame = new Frame("JabberPoint 0.0");	// GUI
@@ -39,10 +40,11 @@ public class JabberPoint {
 			}
 		});
 		frame.add(view);
+		frame.pack();
 		frame.setVisible(true);
 
-		frame.addKeyListener(new KeyController(model));	// and controller
-		frame.setMenuBar(new MenuController(model));	// and controller
+		frame.addKeyListener(new KeyController(model));	// and controller.
+		frame.setMenuBar(new MenuController(frame, model));	// Another controller
 
 		styles = new Style[5];
 		// Presumably these will come from a file
@@ -72,5 +74,6 @@ public class JabberPoint {
 		model.append(s);
 		s.append(0, "Slide The Second");
 		s.append(1, "Main Point of Slide 2");
+		s.append(2, "To load a file here, use File->Open");
 	}
 }
