@@ -24,6 +24,10 @@ public abstract class M {
 		level = 0;
 	}
 
+	public int getLevel() {
+		return level;
+	}
+
 	public abstract Dimension getBBox(ImageObserver o);
 
 	public abstract void draw(int x, int y, Graphics g, Style s,

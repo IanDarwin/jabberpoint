@@ -37,6 +37,12 @@ public class MBitmap extends M {
 		image = null;
 	}
 
+	/** REturn the filename */
+	public String getName() {
+		return imageName;
+	}
+
+	/** Find the bounding box of the image */
 	public Dimension getBBox(ImageObserver o) {
 		return new Dimension(image.getWidth(o), image.getHeight(o));
 	}

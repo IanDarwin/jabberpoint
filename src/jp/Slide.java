@@ -22,6 +22,16 @@ public class Slide {
 		ms.addElement(anItem);
 	}
 
+	public String getTitle() {
+		if (ms.size() == 0) {
+			return "UNTITLED SLIDE";
+		}
+		M m = getM(0);
+		if (!(m instanceof MText))
+			return "SLIDE WITH INVALID TITLE";
+		return ((MText)m).getText();
+	}
+
 	/** Append a String.
 	 * <P>This is a convenience routine for 
 	 * <BR>append(new MText(lev, String));
@@ -30,7 +40,17 @@ public class Slide {
 		append(new MText(lev, msg));
 	}
 
+	/** Get the given M (line or image) */
+	public M getM(int n) {
+		return (M)ms.elementAt(n);
+	}
+
+	/** Get the Vector of all Ms */
 	public Vector getMs() {
 		return ms;
+	}
+
+	public int getSize() {
+		return ms.size();
 	}
 }

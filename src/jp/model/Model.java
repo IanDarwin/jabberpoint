@@ -13,8 +13,10 @@ import java.util.*;
  * @version $Id$
  */
 public class Model extends Observable {
+	/** The slideshow title */
+	protected String showTitle;
 	/** the Vector of Slides */
-	Vector show = null;
+	protected Vector showList = null;
 	/** The currently-displayed page */
 	private int pageNumber = 0;
 
@@ -25,9 +27,13 @@ public class Model extends Observable {
 
 	/** Return the number of slides */
 	public int getSize() {
-		if (show == null)
+		if (showList == null)
 			return 0;
-		return show.size();
+		return showList.size();
+	}
+
+	public String getTitle() {
+		return showTitle;
 	}
 
 	/** Return the current page */
@@ -36,8 +42,24 @@ public class Model extends Observable {
 	}
 
 	void resetShow() {
-		show = new Vector();
+		showList = new Vector();
 		pageNumber = 0;
+	}
+
+	/** Append a slide to the presentation */
+
+	public void append(Slide s) {
+		showList.addElement(s);
+	}
+
+	/** Retrieve a given slide */
+	public Slide getSlide(int n) {
+		return (Slide)showList.elementAt(n);
+	}
+
+	/** Retrieve the current slide */
+	public Slide getCurrentSlide() {
+		return getSlide(pageNumber);
 	}
 
 	/**
@@ -53,6 +75,9 @@ public class Model extends Observable {
 			BufferedReader is = new BufferedReader(new FileReader(fn));
             String s;
 			resetShow();
+
+			showTitle = is.readLine();
+
             while ((s = is.readLine()) != null) {
 				if (s.startsWith("\t")) {
 					int lev;
@@ -81,15 +106,6 @@ public class Model extends Observable {
 		System.out.println("saveFile() not written yet");
 	}
 
-	/** Append a slide to the presentation */
-
-	public void append(Slide s) {
-		show.addElement(s);
-	}
-
-	public Slide getPage() {
-		return (Slide)show.elementAt(pageNumber);
-	}
 
 	/* Here are some methods used in the Controller(s) to control
 	 * what part of the data the view displays:
@@ -99,11 +115,11 @@ public class Model extends Observable {
 	 * notifies all the view(s) of the current page
 	 */
 	public void setPage(int i) {
-		if (i<0 || i>=show.size())
+		if (i<0 || i>=showList.size())
 			throw new IllegalArgumentException();
 		pageNumber = i;
 		setChanged();				// for the Observers (required!)
-		notifyObservers(getPage());	// tell the observers the current page
+		notifyObservers(getCurrentSlide());	// tell the observers the current page
 	}
 
 	/** Move to the previous page, unless at beginning */
@@ -112,7 +128,7 @@ public class Model extends Observable {
 			setPage(pageNumber-1);
 	}
 	public void nextPage() {
-		if (pageNumber < (show.size()-1))
+		if (pageNumber < (showList.size()-1))
 			setPage(pageNumber+1);
 	}
 

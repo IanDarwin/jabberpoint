@@ -26,6 +26,14 @@ public class MText extends M {
 		this(0, "NO TEXT GIVEN");
 	}
 
+	public String getText() {
+		return label;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
 	public Dimension getBBox(ImageObserver o) {
 		FontMetrics fm = JabberPoint.view.getFontMetrics(JabberPoint.styles[level].font);
 		return new Dimension(fm.stringWidth(label), fm.getAscent());
