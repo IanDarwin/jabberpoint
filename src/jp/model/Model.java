@@ -45,6 +45,10 @@ public class Model extends Observable {
 	 */
 	public void loadFile(String fn) {
 		Slide sl = null;
+		if (fn == null) {
+			System.err.println("Code for FileChooser not here yet");
+			return;
+		}
 		try {
 			BufferedReader is = new BufferedReader(new FileReader(fn));
             String s;

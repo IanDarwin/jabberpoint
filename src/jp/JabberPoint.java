@@ -56,8 +56,8 @@ public class JabberPoint {
 
 		styles = new Style[5];
 		// Presumably these will come from a file
-		styles[0] = new Style(100, Color.red,   48, 60);	// title
-		styles[1] = new Style(20, Color.blue,  48, 54);	// main or H1
+		styles[0] = new Style(50, Color.red,   48, 60);	// title
+		styles[1] = new Style(20, Color.blue,  48, 50);	// main or H1
 		styles[2] = new Style(50, Color.black, 36, 44);	// sub or H2
 		styles[3] = new Style(70, Color.black, 30, 36);	// sub or H3
 		styles[4] = new Style(90, Color.black, 24, 30);	// sub or H4

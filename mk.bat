@@ -1,1 +1,1 @@
-javac JabberPoint.java
+jikes +E JabberPoint.java
