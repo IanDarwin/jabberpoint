@@ -22,14 +22,19 @@ public class KeyController extends KeyAdapter {
 		switch(k.getKeyCode()) {
 		case KeyEvent.VK_PAGE_DOWN:
 		case KeyEvent.VK_DOWN:
-		case KeyEvent.VK_ADD:
 		case KeyEvent.VK_ENTER:
+		case '+':
 			model.nextPage();
 			break;
 		case KeyEvent.VK_PAGE_UP:
 		case KeyEvent.VK_UP:
-		case KeyEvent.VK_SUBTRACT:
+		case '-':
 			model.prevPage();
+			break;
+		case 'q':
+		case 'Q':
+			System.exit(1);
+			/*NOTREACHED*/
 			break;
 		default:
 			break;
