@@ -122,10 +122,10 @@ public class Jabber2HTML {
 			outFile.println("<TABLE BGCOLOR=#CC0000 WIDTH=100%>");
 			outFile.println("<TR>");
 			outFile.println("<TD ALIGN=CENTER><A ID=Nav HREF="+prev+">&lt;&lt; Back</A>");
-			outFile.println("<TD ALIGN=CENTER><A ID=Nav HREF="+ind+">INDEX</A>");
+			outFile.println("<TD ALIGN=CENTER><A ID=Nav HREF="+ind+">Contents</A>");
 			outFile.println("<TD ALIGN=CENTER><A ID=Nav HREF="+nxt+">Next &gt;&gt;</A>");
 			outFile.println("</TR>");
-			outFile.println("<TR><TD><TD ALIGN=CENTER ID=Nav>"+pageInd+"<TD></TR>");
+			outFile.println("<TR><TD><TD ALIGN=CENTER ID=Nav><FONT ID=Nav>"+pageInd+"</FONT><TD></TR>");
 			outFile.println("</TABLE>");
 	}
 }
