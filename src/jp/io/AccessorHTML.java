@@ -3,40 +3,47 @@ import java.util.*;
 import java.text.*;
 
 /** Convert a JabberPoint file to HTML.
- * A "view" that simply prints to a series of HTML files.
+ * Filename is unused; writes to a series of HTML files.
  * @author Ian Darwin
  * @version $Id$
  */
-public class Jabber2HTML {
-	Model model;
-	public Jabber2HTML(Model m) {
-		model = m;
-	}
+public class AccessorHTML extends Accessor {
 
-	public static void main(String[] argv) {
-		Model m = new Model();
-		Jabber2HTML j = new Jabber2HTML(m);
-		m.loadFile(argv.length == 1 ? argv[0] : "test.jpt");
-		try {
-			j.makeHTML();
-		} catch (IOException ex) {
-			System.err.println(ex);
-		}
-	}
-
+	protected static String SUBDIR = "htmlshow";
+	protected static File subdirFile = new File(SUBDIR); 
+	protected static final String SLASH = File.separator;
 	protected static String TOCFILENAME="index.html";
 	protected final NumberFormat nf = new DecimalFormat("00");
-	protected String mkFileName(int pgNum) {
-		return "page" + nf.format(pgNum) + ".html";
+
+	public AccessorHTML(String fn) {
+		super(fn);
 	}
 
-	public void makeHTML() throws IOException {
+	private String mkFile(String fn) throws IOException {
+		if (!subdirFile.exists()) {
+			subdirFile.mkdirs();
+		}
+		return SUBDIR + SLASH + fn;
+	}
+
+	/**
+	 * Load a file.
+	 */
+	public void loadFile(Model m, String fn) throws IOException {
+		throw new IllegalStateException("Cannot load HTML files!");
+	}
+
+	/**
+	 * Save a file.
+	 */
+	public void saveFile(Model model, String unusedFileName)
+	throws IOException {
 		String outFileName = null, oldFileName = null;
 		PrintWriter outFile = null;
 		int pageNum = 0;
 
 		System.out.println("Making HTML for show named " + model.getTitle());
-		PrintWriter tocFile = new PrintWriter(new FileWriter(TOCFILENAME));
+		PrintWriter tocFile = new PrintWriter(new FileWriter(mkFile(TOCFILENAME)));
 
 		tocFile.println("<HTML>");
 		tocFile.println("<!-- made by $Id$");
@@ -55,7 +62,7 @@ public class Jabber2HTML {
 				outFile.close();
 			outFileName = mkFileName(++pageNum);
 			tocFile.println("<LI><A HREF=\""+outFileName+"\">"+s.getTitle()+"</A></LI>");
-			outFile = new PrintWriter(new FileWriter(outFileName));
+			outFile = new PrintWriter(new FileWriter(mkFile(outFileName)));
 			outFile.println("<HTML>");
 			outFile.println("<HEAD>");
 			outFile.println("<TITLE>"+s.getTitle()+"</TITLE>");
@@ -101,7 +108,7 @@ public class Jabber2HTML {
 		oldFileName = outFileName;
 		outFile.close();
 		outFileName = mkFileName(++pageNum);
-		outFile = new PrintWriter(new FileWriter(outFileName));
+		outFile = new PrintWriter(new FileWriter(mkFile(outFileName)));
 		outFile.println("<H1>/*EOF - "+model.getTitle()+"</H1>");
 		outFile.println("That is the end of the slide show named ");
 		outFile.println("<I>"+model.getTitle()+"</I>. Please go");
@@ -110,14 +117,20 @@ public class Jabber2HTML {
 
 	}
 
-	protected void para(PrintWriter out, String tag, String line) {
+
+	/** Make up the fileName for a page */
+	private String mkFileName(int pgNum) {
+		return "page" + nf.format(pgNum) + ".html";
+	}
+
+	private void para(PrintWriter out, String tag, String line) {
 		out.println("<"+tag+">"+line+"</"+tag+">");
 	}
 
 	/** Generate the navigator at the top of the page.
 	 * This version uses a 3 column HTML table.
 	 */
-	protected void mkNavigator(PrintWriter outFile, String pageInd, 
+	private void mkNavigator(PrintWriter outFile, String pageInd, 
 			String prev, String ind, String nxt) {
 			outFile.println("<TABLE BGCOLOR=#CC0000 WIDTH=100%>");
 			outFile.println("<TR>");
