@@ -25,7 +25,7 @@ public class MenuController extends MenuBar {
 
 		ResourceBundle b = ResourceBundle.getBundle("JabberPointMenus");
 
-		Menu fm = mkMenu("file");
+		Menu fm = mkMenu(b, "file");
 		fm.add(mi = mkMenuItem(b, "file", "open"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

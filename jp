@@ -1,1 +1,9 @@
-java JabberPoint $*
+#!/bin/sh
+
+# jp - front end for JabberPoint slideshow program
+# $Id$
+
+case $* in
+	0)	echo "Usage: jp file" >&2;;
+	*)	java JabberPoint $*
+esac

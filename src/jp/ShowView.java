@@ -76,17 +76,8 @@ public class ShowView extends Component implements Observer {
 			else
 				indent = s.indent;
 			// System.out.println(s);
-			switch(m.type) {
-				case M.TEXT:
-					g.setFont(s.font);
-					g.setColor(s.color);
-					g.drawString(m.label, indent, y);
-					y += s.leading;
-					break;
-				default:
-					throw new IllegalArgumentException(
-					"Unknown type (" + m.type + ") found in ShowView.paint()");
-			}
+			m.draw(indent, y, g, s);
+			y += s.leading;
 		}
 	}
 

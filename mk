@@ -1,2 +1,2 @@
 #!/bin/sh -x
-javac JabberPoint.java
+jikes JabberPoint.java
