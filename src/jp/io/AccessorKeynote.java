@@ -14,7 +14,7 @@ import org.xml.sax.SAXException;
  * Apple Keynote(tm) slide show accessor; currently read-only.
  * $Id$
  */
-public class AccessorKeynote extends Accessor {
+public class AccessorKeynote extends AbstractAccessor {
 
 	/** Construct */
 	protected AccessorKeynote(String fileName) {

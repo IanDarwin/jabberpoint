@@ -18,7 +18,7 @@ import java.io.IOException;
  * </pre>
  * $Id$
  */
-public class AccessorText extends Accessor {
+public class AccessorText extends AbstractAccessor {
 
 	/** Construct */
 	protected AccessorText(String fileName) {

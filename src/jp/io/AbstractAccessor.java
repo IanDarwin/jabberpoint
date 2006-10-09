@@ -1,8 +1,5 @@
 package jp;
 
-import java.io.IOException;
-
-
 /**
  * An Accessor lets you read/write Model data from/to a storage medium.
  * <p>
@@ -11,15 +8,15 @@ import java.io.IOException;
  * @author Ian Darwin, ian@darwinsys.co
  * @version $Id$
  */
-public interface Accessor {
+public abstract class AbstractAccessor implements Accessor {
 
-	/**
-	 * Load a file.
-	 */
-	public abstract void loadFile(Model m, String fn) throws IOException;
+	/** The current file name */
+	protected String fileName;
 
-	/**
-	 * Save a file.
-	 */
-	public abstract void saveFile(Model m, String fn) throws IOException;
+	protected AbstractAccessor(String fn) {
+		fileName = fn;
+	}
+
+	public AbstractAccessor() {
+	}
 }

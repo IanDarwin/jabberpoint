@@ -53,7 +53,7 @@ public class MenuController extends MenuBar {
 					return;
 				}
 				String fileName = selectedFile.getAbsolutePath();
-				Accessor xacc = Accessor.getInstance(fileName);
+				Accessor xacc = AccessorFactory.getInstance(fileName);
 				try {
 					xacc.loadFile(model, fileName);
 				} catch (IOException ex) {
@@ -74,7 +74,7 @@ public class MenuController extends MenuBar {
 		fm.add(mi = mkMenuItem(b, "file", "save"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Accessor xacc = Accessor.getInstance("dump.xml");
+				Accessor xacc = AccessorFactory.getInstance("dump.xml");
 				try {
 					xacc.saveFile(model, "dump.xml");
 				} catch (IOException ex) {

@@ -41,9 +41,9 @@ public class JabberPoint {
 
 		try {
 			if (argv.length == 0) { // run a demo program
-				Accessor.getInstance(Accessor.DEMO_NAME).loadFile(jp.model, "");
+				AccessorFactory.getInstance(AccessorFactory.DEMO_NAME).loadFile(jp.model, "");
 			} else {
-				Accessor.getInstance(argv[0]).loadFile(jp.model, argv[0]);
+				AccessorFactory.getInstance(argv[0]).loadFile(jp.model, argv[0]);
 			}
 			jp.model.setSlideNumber(0);
 		} catch (IOException ex) {

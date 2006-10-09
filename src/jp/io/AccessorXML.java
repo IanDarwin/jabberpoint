@@ -10,7 +10,7 @@ import java.util.List;
  *
  * $Id$
  */
-public abstract class AccessorXML extends Accessor {
+public abstract class AccessorXML extends AbstractAccessor {
 
 	/** Construct */
 	protected AccessorXML(String fileName) {

@@ -12,7 +12,7 @@ import java.text.NumberFormat;
  * @author Ian Darwin
  * @version $Id$
  */
-public class AccessorHTML extends Accessor {
+public class AccessorHTML extends AbstractAccessor {
 
 	protected static String SUBDIR = "htmlshow";
 	protected static File subdirFile = new File(SUBDIR);

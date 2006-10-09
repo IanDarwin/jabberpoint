@@ -3,7 +3,7 @@ package jp;
 /*
  * Run a built-in demo.
  */
-class Demo extends Accessor {
+class Demo extends AbstractAccessor {
 
 	Demo(String fn) {
 		super(fn);
