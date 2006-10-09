@@ -1,7 +1,14 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.util.*;
+package jp;
+
+import java.awt.Font;
+import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 /** JabberPoint Text View.
  * <p>
@@ -9,6 +16,7 @@ import java.util.*;
  * @author Ian F. Darwin, ian@darwinsys.com
  * @version $Id$
  */
+@SuppressWarnings("serial")
 public class TextView extends JComponent implements Observer {
 
 	/** The View */
@@ -70,7 +78,7 @@ public class TextView extends JComponent implements Observer {
 		slide = (Slide)data;
 	}
 
-	public static void main(String[] args) { 
+	public static void main(String[] args) {
 		JFrame jf = new JFrame("hello");
 		jf.getContentPane().add(new TextView(new Model()));
 		jf.pack();

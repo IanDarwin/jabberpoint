@@ -1,4 +1,7 @@
-import java.util.*;
+package jp;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /** Represents one slide in a slideshow.
  * <P>
@@ -15,11 +18,7 @@ public class Slide {
 	protected String title;
 
 	/** each page contains a List of M's */
-	protected List ms;
-
-	public Slide() {
-		ms = new ArrayList();
-	}
+	protected List<M> ms = new ArrayList<M>();
 
 	/** Append an M. */
 	public void append(M anItem) {
@@ -35,7 +34,7 @@ public class Slide {
 	}
 
 	/** Append a String.
-	 * <P>This is a convenience routine for 
+	 * <P>This is a convenience routine for
 	 * <BR>append(new MText(lev, String));
 	 */
 	public void append(int lev, String msg) {

@@ -1,6 +1,11 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
+package jp;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 /** Convert a JabberPoint file to HTML.
  * Filename is unused; writes to a series of HTML files.
@@ -10,7 +15,7 @@ import java.text.*;
 public class AccessorHTML extends Accessor {
 
 	protected static String SUBDIR = "htmlshow";
-	protected static File subdirFile = new File(SUBDIR); 
+	protected static File subdirFile = new File(SUBDIR);
 	protected static final String SLASH = File.separator;
 	protected static String TOCFILENAME="index.html";
 	protected final NumberFormat nf = new DecimalFormat("00");
@@ -130,7 +135,7 @@ public class AccessorHTML extends Accessor {
 	/** Generate the navigator at the top of the page.
 	 * This version uses a 3 column HTML table.
 	 */
-	private void mkNavigator(PrintWriter outFile, String pageInd, 
+	private void mkNavigator(PrintWriter outFile, String pageInd,
 			String prev, String ind, String nxt) {
 			outFile.println("<TABLE BGCOLOR=#CC0000 WIDTH=100%>");
 			outFile.println("<TR>");

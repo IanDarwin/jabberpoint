@@ -1,5 +1,8 @@
-import java.awt.*;
-import javax.swing.*;
+package jp;
+
+import java.awt.Frame;
+
+import javax.swing.JOptionPane;
 
 /** This is the About dialog for JabberPoint.
  * @author Ian F. Darwin, ian@darwinsys.com

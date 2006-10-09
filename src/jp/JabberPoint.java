@@ -1,7 +1,16 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.io.*;
+package jp;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JSplitPane;
+
 import com.darwinsys.swingui.UtilGUI;
 
 /** JabberPoint Main Program

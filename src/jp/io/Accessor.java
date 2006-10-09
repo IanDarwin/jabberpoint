@@ -1,12 +1,17 @@
-import java.util.*;
-import java.io.*;
+package jp;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * An Accessor lets you read/write Model data from/to a storage medium.
  * <p>
  * Non-abstract subclasses implement the methods.
  * Subclasses must be public for use in dynamic class loading.
- * @author Ian Darwin, ian@darwinsys.co 
+ * @author Ian Darwin, ian@darwinsys.co
  * @version $Id$
  */
 public abstract class Accessor {
@@ -24,7 +29,7 @@ public abstract class Accessor {
 	static {
 		jabberpointHome = System.getProperty("JABBERPOINTHOME");
 		p = new Properties();
-		String PROPS = jabberpointHome + 
+		String PROPS = jabberpointHome +
 			File.separator + "jabberpoint.properties";
 		try {
 			InputStream is = new FileInputStream(PROPS);

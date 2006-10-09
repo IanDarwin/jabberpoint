@@ -1,9 +1,19 @@
-import java.awt.*;
-import java.awt.font.*;
-import java.awt.geom.*;
+package jp;
+
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.font.FontRenderContext;
+import java.awt.font.LineBreakMeasurer;
+import java.awt.font.TextAttribute;
+import java.awt.font.TextLayout;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
-import java.text.*;
-import java.util.*;
+import java.text.AttributedString;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /** The data model, for one TEXT item.
  * <P>
@@ -19,7 +29,7 @@ public class MText extends M {
 	/** The text of this line */
 	protected String text;
 	/** The TextLayouts corresponding to "text" */
-	java.util.List layouts;
+	List<TextLayout> layouts;
 
 	/** Construct an M given type, level and String */
 	public MText(int lev, String s) {
@@ -86,16 +96,16 @@ public class MText extends M {
 	 * to this MText. Some things are approximations!
 	 */
 	private void getLayouts() {
-		layouts = new ArrayList();
+		layouts = new ArrayList<TextLayout>();
 
-		Point pen = new Point(10, 20);
+		// Point pen = new Point(10, 20);
 		Graphics2D g2d = (Graphics2D) JabberPoint.getGraphics();
 		FontRenderContext frc = g2d.getFontRenderContext();
 
 		Style s = JabberPoint.getStyle(level);
 
 		AttributedString attrStr = new AttributedString(text);
-		attrStr.addAttribute(TextAttribute.FONT, s.font, 0, text.length());   
+		attrStr.addAttribute(TextAttribute.FONT, s.font, 0, text.length());
 		LineBreakMeasurer measurer = new LineBreakMeasurer(
 			attrStr.getIterator(), frc);
 		float wrappingWidth;

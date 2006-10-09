@@ -1,5 +1,9 @@
-import java.awt.*;
+package jp;
+
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.image.ImageObserver;
+
 import javax.swing.JOptionPane;
 
 /** The data model, for a CODE item.
@@ -46,7 +50,7 @@ public class MCode extends M {
 					" -e vi " + fileName);
 				shown = true;
 			} catch (java.io.IOException ex) {
-				JOptionPane.showMessageDialog(null, 
+				JOptionPane.showMessageDialog(null,
 					ex.toString(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 			}

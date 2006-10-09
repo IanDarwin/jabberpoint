@@ -1,3 +1,5 @@
+package jp;
+
 /*
  * Run a built-in demo.
  */

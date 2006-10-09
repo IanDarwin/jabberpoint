@@ -1,4 +1,8 @@
-import java.io.*;
+package jp;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * A Model subclass for tab-indented text.
@@ -25,7 +29,7 @@ public class AccessorText extends Accessor {
 	}
 
 	/**
-	 * Load a file and scan, using BufferedReader 
+	 * Load a file and scan, using BufferedReader
 	 */
 	public void loadFile(Model model, String fn) throws IOException {
 		Slide sl = null;

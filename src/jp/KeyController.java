@@ -1,6 +1,9 @@
-import java.awt.event.*;
+package jp;
 
-/** This is the KeyController (KeyListener) for the View 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+/** This is the KeyController (KeyListener) for the View
  * <P>
  * This program is distributed under the terms of the accompanying
  * COPYRIGHT.txt file (which is NOT the GNU General Public License).

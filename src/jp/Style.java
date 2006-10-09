@@ -1,4 +1,7 @@
-import java.awt.*;
+package jp;
+
+import java.awt.Color;
+import java.awt.Font;
 
 /** Style == Indent, Color, Font and Leading.
  * <P>

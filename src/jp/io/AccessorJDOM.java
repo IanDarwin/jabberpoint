@@ -1,7 +1,13 @@
-import org.jdom.*;
-import org.jdom.input.*;
-import java.io.*;
-import java.util.*;
+package jp;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.input.SAXBuilder;
 
 /**
  * JDOM-based Model subclass for XML-based text.
@@ -24,7 +30,7 @@ public class AccessorJDOM extends AccessorXML {
 	public void loadFile(Model model, String fn) throws IOException {
 		try {
 			SAXBuilder b = new SAXBuilder(true);    // true -> validate
-	 
+
 			// Create a JDOM document.
 			Document doc = b.build(new File(fn));
 

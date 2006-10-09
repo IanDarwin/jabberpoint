@@ -1,5 +1,9 @@
-import java.io.*;
-import java.util.*;
+package jp;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * A Model subclass for XML-based text.

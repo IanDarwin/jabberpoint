@@ -1,4 +1,7 @@
-import java.awt.*;
+package jp;
+
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
 /** The data model, for one item.

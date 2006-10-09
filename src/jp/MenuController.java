@@ -1,8 +1,17 @@
-import java.awt.*;
-import java.awt.event.*;
+package jp;
+
+import java.awt.Frame;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.MenuShortcut;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.*;
-import javax.swing.*;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 /** This is the Menu Controller for the View.
  * <P>
@@ -13,6 +22,7 @@ import javax.swing.*;
  * @author Ian F. Darwin, ian@darwinsys.com
  * @version $Id$
  */
+@SuppressWarnings("serial")
 public class MenuController extends MenuBar {
 	/** The Frame, used only for parenting Dialogs */
 	Frame parent;

@@ -1,6 +1,11 @@
-import javax.swing.*;
-import javax.swing.event.*;
-import java.util.*;
+package jp;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+
+import javax.swing.ListModel;
+import javax.swing.event.ListDataListener;
 
 /**
  * Model is the data model for JabberPoint.
@@ -24,7 +29,7 @@ public class Model extends Observable implements ListModel {
 	protected String showTitle;
 
 	/** the ArrayList of Slides */
-	protected ArrayList showList = null;
+	protected ArrayList<Slide> showList = null;
 
 	/** The currently-displayed page */
 	protected int pageNumber = 0;
@@ -65,7 +70,7 @@ public class Model extends Observable implements ListModel {
 
 		// tell the observers the current page
 		setChanged();				// for the Observers (required!)
-		notifyObservers(slNumber==-1?null:getCurrentSlide());	
+		notifyObservers(slNumber==-1?null:getCurrentSlide());
 
 		// ListSelectionEvent evt = new ListDataEvent(view,
 		// 	slNumber, slNumber, false);
@@ -88,7 +93,7 @@ public class Model extends Observable implements ListModel {
 
 	/** Clear out the show, getting it ready for the next use */
 	void clear() {
-		showList = new ArrayList();
+		showList = new ArrayList<Slide>();
 		setTitle("New presentation");
 		setSlideNumber(-1);
 	}
@@ -117,7 +122,8 @@ public class Model extends Observable implements ListModel {
 		System.exit(n);
 	}
 
-	private java.util.List listenersList = new ArrayList();
+	private List<ListDataListener> listenersList =
+		new ArrayList<ListDataListener>();
 
 	public void addListDataListener(ListDataListener l) {
 		listenersList.add(l);

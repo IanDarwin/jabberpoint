@@ -1,7 +1,14 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.util.*;
+package jp;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Toolkit;
+import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.JComponent;
 
 /** JabberPoint Show View.
  * <P>
@@ -12,6 +19,7 @@ import java.util.*;
  * @author Ian F. Darwin, ian@darwinsys.com
  * @version $Id$
  */
+@SuppressWarnings("serial")
 public class ShowView extends JComponent implements Observer {
 
 	/** The collection of M's on the current page */
