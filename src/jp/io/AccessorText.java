@@ -70,6 +70,6 @@ public class AccessorText extends AbstractAccessor {
     }
 
 	public void saveFile(Model model, String fn) throws IOException {
-		System.out.println("saveFile() not written yet");
+		throw new IOException("saveFile() not written yet");
 	}
 }
