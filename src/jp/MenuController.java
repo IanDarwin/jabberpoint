@@ -85,6 +85,20 @@ public class MenuController extends MenuBar {
 			}
 		});
 		fm.addSeparator();
+		fm.add(mi = mkMenuItem(b, "file", "demo"));
+		mi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Accessor xacc = AccessorFactory.getInstance(AccessorFactory.DEMO_NAME);
+				try {
+					xacc.loadFile(model, AccessorFactory.DEMO_NAME);
+				} catch (IOException ex) {
+					System.err.println(ex);
+					return;
+				}
+			}
+		});
+
+		fm.addSeparator();
 		fm.add(mi = mkMenuItem(b, "file", "exit"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
