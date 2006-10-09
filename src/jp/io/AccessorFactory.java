@@ -12,7 +12,7 @@ import java.util.Properties;
  * @author Ian Darwin, ian@darwinsys.co
  * @version $Id$
  */
-public abstract class Accessor {
+public abstract class AccessorFactory {
 
 	/** The current file name */
 	protected String fileName;
@@ -28,7 +28,7 @@ public abstract class Accessor {
 
 	static void loadProperties() {
 		try {
-			InputStream is = Accessor.class.getResourceAsStream(PROPS);
+			InputStream is = AccessorFactory.class.getResourceAsStream(PROPS);
 			programProperties.load(is);
 			is.close();
 			loaded = true;
@@ -42,6 +42,9 @@ public abstract class Accessor {
 
 	/** getInstance returns the correct subclass for reading/writing. */
 	public static Accessor getInstance(String fileName) {
+		if (fileName.equals(DEMO_NAME)) {
+			return new Demo(DEMO_NAME);
+		}
 		if (!loaded) {
 			loadProperties();
 		}
@@ -64,18 +67,15 @@ public abstract class Accessor {
 				System.err.println("Error in dynamic class, using fallbacks");
 			}
 		}
-		if (fileName.endsWith(".xml"))
-			return (Accessor)new AccessorJDOM(fileName);
-		if (fileName.equals(DEMO_NAME))
-			return new Demo(DEMO_NAME);
+
 		return (Accessor)new AccessorText(fileName);
 	}
 
-	protected Accessor(String fn) {
+	protected AccessorFactory(String fn) {
 		fileName = fn;
 	}
 
-	public Accessor() {
+	public AccessorFactory() {
 	}
 
 	/**
