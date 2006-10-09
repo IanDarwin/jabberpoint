@@ -1,7 +1,5 @@
 package jp;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -18,23 +16,22 @@ public abstract class Accessor {
 
 	/** The current file name */
 	protected String fileName;
+	/** default filname */
+	final static String PROPS = "/jabberpoint.properties";
+
+	private static boolean loaded;
 
 	/** The filename for the demo show */
 	public static final String DEMO_NAME = "Demonstration Slide Show";
 
-	protected static Properties p;
+	protected static Properties programProperties = new Properties();
 
-	protected static String jabberpointHome;
-
-	static {
-		jabberpointHome = System.getProperty("JABBERPOINTHOME");
-		p = new Properties();
-		String PROPS = jabberpointHome +
-			File.separator + "jabberpoint.properties";
+	static void loadProperties() {
 		try {
-			InputStream is = new FileInputStream(PROPS);
-			p.load(is);
+			InputStream is = Accessor.class.getResourceAsStream(PROPS);
+			programProperties.load(is);
 			is.close();
+			loaded = true;
 		} catch (IOException ex) {
 			System.err.println("Can't load properties file " + PROPS);
 			System.err.println(ex.toString());
@@ -45,6 +42,9 @@ public abstract class Accessor {
 
 	/** getInstance returns the correct subclass for reading/writing. */
 	public static Accessor getInstance(String fileName) {
+		if (!loaded) {
+			loadProperties();
+		}
 		int lastDot = fileName.lastIndexOf(".");
 		String ext;
 		if (lastDot == -1) {
@@ -54,14 +54,14 @@ public abstract class Accessor {
 			ext = fileName.substring(lastDot);
 		}
 		String handlerClassName;
-		if ((handlerClassName = p.getProperty("class"+ext)) != null) {
+		if ((handlerClassName = programProperties.getProperty("class"+ext)) != null) {
 			System.out.println("Loading class " + handlerClassName);
 			try {
 				return (Accessor)
 					Class.forName(handlerClassName).newInstance();
 			} catch (Exception ex) {
-				System.err.println("Error in dynamic class, using fallbacks");
 				System.err.println(ex);
+				System.err.println("Error in dynamic class, using fallbacks");
 			}
 		}
 		if (fileName.endsWith(".xml"))

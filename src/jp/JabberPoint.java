@@ -63,7 +63,7 @@ public class JabberPoint {
 
 		frame = new JFrame("JabberPoint 0.0");	// GUI
 		JSplitPane pane = new JSplitPane(
-			JSplitPane.HORIZONTAL_SPLIT, slideView, textView);
+			JSplitPane.HORIZONTAL_SPLIT, textView, slideView);
 		frame.setContentPane(pane);
 
 		//frame.pack();
@@ -81,14 +81,14 @@ public class JabberPoint {
 			}
 		});
 
-		styles = new Style[5];
-		// Presumably these will come from a file
-		styles[0] = new Style(50, Color.red,   48, 60);	// title
-		styles[1] = new Style(20, Color.blue,  40, 46);	// main or H1
-		styles[2] = new Style(50, Color.black, 36, 44);	// sub or H2
-		styles[3] = new Style(70, Color.black, 30, 36);	// sub or H3
-		styles[4] = new Style(90, Color.black, 24, 30);	// sub or H4
-
+		styles = new Style[] {
+			// Presumably these will come from a file
+			new Style(50, Color.red,   48, 60),	// title
+			new Style(20, Color.blue,  40, 46),	// main or H1
+			new Style(50, Color.black, 36, 44),	// sub or H2
+			new Style(70, Color.black, 30, 36),	// sub or H3
+			new Style(90, Color.black, 24, 30),	// sub or H4
+		};
 	}
 
 	public static Style getStyle(int lev) {

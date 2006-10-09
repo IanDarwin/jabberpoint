@@ -1,16 +1,18 @@
 package jp;
 
-import java.awt.Frame;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
 import java.awt.MenuShortcut;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /** This is the Menu Controller for the View.
@@ -25,11 +27,11 @@ import javax.swing.JOptionPane;
 @SuppressWarnings("serial")
 public class MenuController extends MenuBar {
 	/** The Frame, used only for parenting Dialogs */
-	Frame parent;
+	JFrame parent;
 	/** The Model which we are controlling */
 	Model model;
 
-	public MenuController(Frame f, Model m) {
+	public MenuController(JFrame f, Model m) {
 		parent = f;
 		model = m;
 
@@ -41,9 +43,19 @@ public class MenuController extends MenuBar {
 		fm.add(mi = mkMenuItem(b, "file", "open"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Accessor xacc = Accessor.getInstance("test.xml");
+				JFileChooser chooser = new JFileChooser(new File("."));
+				int ret = chooser.showOpenDialog(parent);
+				if (ret == -1) {
+					return;
+				}
+				File selectedFile = chooser.getSelectedFile();
+				if (selectedFile == null) {
+					return;
+				}
+				String fileName = selectedFile.getAbsolutePath();
+				Accessor xacc = Accessor.getInstance(fileName);
 				try {
-					xacc.loadFile(model, "test.xml");
+					xacc.loadFile(model, fileName);
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(parent,
 						"IOException: " + ex, "Load Error",

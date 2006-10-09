@@ -29,7 +29,7 @@ public class Model extends Observable implements ListModel {
 	protected String showTitle;
 
 	/** the ArrayList of Slides */
-	protected ArrayList<Slide> showList = null;
+	protected List<Slide> showList = null;
 
 	/** The currently-displayed page */
 	protected int pageNumber = 0;
