@@ -1,4 +1,4 @@
-package jp.model;
+package jp;
 
 import java.awt.Menu;
 import java.awt.MenuBar;
@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import jp.AboutBox;
 import jp.io.Accessor;
 import jp.io.AccessorFactory;
+import jp.model.Model;
 
 /** This is the Menu Controller for the View.
  * <P>
