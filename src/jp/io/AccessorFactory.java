@@ -1,4 +1,4 @@
-package jp;
+package jp.io;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +12,7 @@ import java.util.Properties;
  * @author Ian Darwin, ian@darwinsys.co
  * @version $Id$
  */
-public abstract class AccessorFactory {
+public class AccessorFactory {
 
 	/** The current file name */
 	protected String fileName;
@@ -77,14 +77,4 @@ public abstract class AccessorFactory {
 
 	public AccessorFactory() {
 	}
-
-	/**
-	 * Load a file.
-	 */
-	public abstract void loadFile(Model m, String fn) throws java.io.IOException ;
-
-	/**
-	 * Save a file.
-	 */
-	public abstract void saveFile(Model m, String fn) throws java.io.IOException ;
 }

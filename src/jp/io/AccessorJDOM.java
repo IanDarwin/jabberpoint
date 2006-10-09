@@ -1,8 +1,12 @@
-package jp;
+package jp.io;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import jp.Slide;
+import jp.model.MText;
+import jp.model.Model;
 
 import org.jdom.Document;
 import org.jdom.Element;

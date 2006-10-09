@@ -1,4 +1,8 @@
-package jp;
+package jp.io;
+
+import jp.Slide;
+import jp.model.MBitmap;
+import jp.model.Model;
 
 /*
  * Run a built-in demo.

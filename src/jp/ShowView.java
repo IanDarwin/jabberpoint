@@ -10,6 +10,10 @@ import java.util.Observer;
 
 import javax.swing.JComponent;
 
+import jp.model.M;
+import jp.model.MText;
+import jp.model.Model;
+
 /** JabberPoint Show View.
  * <P>
  * This program is distributed under the terms of the accompanying
@@ -75,7 +79,7 @@ public class ShowView extends JComponent implements Observer {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, getSize().width, getSize().height);
 
-		if (model.pageNumber < 0)
+		if (model.getPageNumber() < 0)
 			return;
 
 		if (slide == null) {
@@ -105,7 +109,7 @@ public class ShowView extends JComponent implements Observer {
 		for (int i=0; i<v.size(); i++) {
 			m = (M)v.get(i);
 			// System.out.println(m);
-			s = JabberPoint.getStyle(m.level);
+			s = JabberPoint.getStyle(m.getLevel());
 			g.setFont(s.font);
 			Dimension box = m.getBBox(this);
 			// if (m.level == 0)

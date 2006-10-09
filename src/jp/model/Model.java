@@ -1,4 +1,4 @@
-package jp;
+package jp.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.Observable;
 
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
+
+import jp.Slide;
 
 /**
  * Model is the data model for JabberPoint.
@@ -25,6 +27,7 @@ import javax.swing.event.ListDataListener;
 // XXX for different methods here!
 
 public class Model extends Observable implements ListModel {
+
 	/** The slideshow title */
 	protected String showTitle;
 
@@ -92,7 +95,7 @@ public class Model extends Observable implements ListModel {
 	}
 
 	/** Clear out the show, getting it ready for the next use */
-	void clear() {
+	public void clear() {
 		showList = new ArrayList<Slide>();
 		setTitle("New presentation");
 		setSlideNumber(-1);
@@ -130,5 +133,21 @@ public class Model extends Observable implements ListModel {
 	}
 	public void removeListDataListener(ListDataListener l) {
 		listenersList.remove(l);
+	}
+
+	public int getPageNumber() {
+		return pageNumber;
+	}
+
+	public String getShowTitle() {
+		return showTitle;
+	}
+
+	public void setShowTitle(String showTitle) {
+		this.showTitle = showTitle;
+	}
+
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
 	}
 }

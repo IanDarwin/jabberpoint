@@ -1,9 +1,14 @@
-package jp;
+package jp.io;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+
+import jp.Slide;
+import jp.model.M;
+import jp.model.MText;
+import jp.model.Model;
 
 /**
  * A Model subclass for XML-based text.
@@ -46,10 +51,10 @@ public abstract class AccessorXML extends AbstractAccessor {
 			List v = s.getMs();
 			for (int n = 0; n<v.size(); n++) {
 				M m = (M)v.get(n);
-				if (m instanceof MText && m.level > 0) {
-					out.print("<h" + m.level + ">");
-					putText(out, ((MText)m).text);
-					out.println("</h" + m.level + ">");
+				if (m instanceof MText && m.getLevel() > 0) {
+					out.print("<h" + m.getLevel() + ">");
+					putText(out, ((MText)m).getText());
+					out.println("</h" + m.getLevel() + ">");
 				} else {
 					System.out.println("Ignoring " + m); }
 			}

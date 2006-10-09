@@ -1,9 +1,13 @@
-package jp;
+package jp.io;
 
 import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+import jp.Slide;
+import jp.model.MText;
+import jp.model.Model;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;

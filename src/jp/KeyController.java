@@ -3,6 +3,8 @@ package jp;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import jp.model.Model;
+
 /** This is the KeyController (KeyListener) for the View
  * <P>
  * This program is distributed under the terms of the accompanying

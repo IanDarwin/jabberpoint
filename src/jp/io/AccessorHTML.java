@@ -1,4 +1,4 @@
-package jp;
+package jp.io;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+
+import jp.Slide;
+import jp.model.M;
+import jp.model.MBitmap;
+import jp.model.MText;
+import jp.model.Model;
 
 /** Convert a JabberPoint file to HTML.
  * Filename is unused; writes to a series of HTML files.

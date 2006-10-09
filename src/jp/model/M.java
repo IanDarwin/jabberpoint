@@ -1,8 +1,10 @@
-package jp;
+package jp.model;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
+
+import jp.Style;
 
 /** The data model, for one item.
  * <P>

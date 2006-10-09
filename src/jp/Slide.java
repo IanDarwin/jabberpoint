@@ -3,6 +3,9 @@ package jp;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.model.M;
+import jp.model.MText;
+
 /** Represents one slide in a slideshow.
  * <P>
  * This program is distributed under the terms of the accompanying

@@ -1,8 +1,13 @@
-package jp;
+package jp.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import jp.Slide;
+import jp.model.MBitmap;
+import jp.model.MCode;
+import jp.model.Model;
 
 /**
  * A Model subclass for tab-indented text.
@@ -41,7 +46,7 @@ public class AccessorText extends AbstractAccessor {
 		String line;
 		model.clear();
 
-		model.showTitle = is.readLine();
+		model.setShowTitle(is.readLine());
 
 		while ((line = is.readLine()) != null) {
 			if (line.length() == 0)	// null lines make trouble

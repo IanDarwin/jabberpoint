@@ -1,10 +1,12 @@
-package jp;
+package jp.model;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
 import javax.swing.JOptionPane;
+
+import jp.Style;
 
 /** The data model, for a CODE item.
  * @author Ian F. Darwin, ian@darwinsys.com
@@ -40,8 +42,8 @@ public class MCode extends M {
 	boolean shown;
 
 	public void draw(int x, int y, Graphics g, Style s, ImageObserver o) {
-		g.setFont(s.font);
-		g.setColor(s.color);
+		g.setFont(s.getFont());
+		g.setColor(s.getColor());
 		mesg.draw(x, y, g, s, o);
 		if (!shown) {
 			try {

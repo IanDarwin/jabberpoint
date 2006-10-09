@@ -11,6 +11,10 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 
+import jp.io.AccessorFactory;
+import jp.model.MenuController;
+import jp.model.Model;
+
 import com.darwinsys.swingui.UtilGUI;
 
 /** JabberPoint Main Program

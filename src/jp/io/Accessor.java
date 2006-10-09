@@ -1,6 +1,8 @@
-package jp;
+package jp.io;
 
 import java.io.IOException;
+
+import jp.model.Model;
 
 
 /**

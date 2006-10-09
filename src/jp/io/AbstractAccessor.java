@@ -1,4 +1,6 @@
-package jp;
+package jp.io;
+
+import jp.model.Model;
 
 /**
  * An Accessor lets you read/write Model data from/to a storage medium.
@@ -12,6 +14,8 @@ public abstract class AbstractAccessor implements Accessor {
 
 	/** The current file name */
 	protected String fileName;
+
+	protected Model model;
 
 	protected AbstractAccessor(String fn) {
 		fileName = fn;
