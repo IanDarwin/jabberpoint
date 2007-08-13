@@ -74,8 +74,10 @@ public class JabberPoint {
 		pane.setResizeWeight(0.4);
 		frame.setVisible(true);
 
-		frame.addKeyListener(new KeyController(model));	// and a controller.
-		frame.setMenuBar(new MenuController(frame, model));	// Another one.
+		final KeyController keyController = new KeyController(model);
+		slideView.addKeyListener(keyController);	// and a controller.
+		textView.addKeyListener(keyController);
+		frame.setJMenuBar(new MenuController(frame, model));	// Another one.
 
         frame.addWindowListener(new WindowAdapter() {	// Last controller.
 			public void windowClosing(WindowEvent e) {
