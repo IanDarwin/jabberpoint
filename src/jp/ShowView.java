@@ -14,7 +14,7 @@ import jp.model.M;
 import jp.model.MText;
 import jp.model.Model;
 
-/** JabberPoint Show View.
+/** JabberPoint Slide Show - Presentation View.
  * <P>
  * This program is distributed under the terms of the accompanying
  * COPYRIGHT.txt file (which is NOT the GNU General Public License).
