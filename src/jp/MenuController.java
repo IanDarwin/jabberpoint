@@ -13,6 +13,9 @@ import java.util.ResourceBundle;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import jp.AboutBox;
@@ -30,7 +33,7 @@ import jp.model.Model;
  * @version $Id$
  */
 @SuppressWarnings("serial")
-public class MenuController extends MenuBar {
+public class MenuController extends JMenuBar {
 	/** The Frame, used only for parenting Dialogs */
 	JFrame parent;
 	/** The Model which we are controlling */
@@ -40,11 +43,11 @@ public class MenuController extends MenuBar {
 		parent = f;
 		model = m;
 
-		MenuItem mi;
+		JMenuItem mi;
 
 		ResourceBundle b = ResourceBundle.getBundle("JabberPointMenus");
 
-		Menu fm = mkMenu(b, "file");
+		JMenu fm = mkMenu(b, "file");
 		fm.add(mi = mkMenuItem(b, "file", "open"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -112,7 +115,7 @@ public class MenuController extends MenuBar {
 		});
 		add(fm);
 
-		Menu vm = mkMenu(b,  "view");
+		JMenu vm = mkMenu(b,  "view");
 		vm.add(mi = mkMenuItem(b, "view", "next"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -140,27 +143,27 @@ public class MenuController extends MenuBar {
 		vm.add(mi = mkMenuItem(b, "view", "sorter"));
 		add(vm);
 
-		Menu hm = mkMenu(b,  "help");
+		JMenu hm = mkMenu(b,  "help");
 		hm.add(mi = mkMenuItem(b, "help", "about"));
 		mi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AboutBox.show(parent);
 			}
 		});
-		setHelpMenu(hm);		// needed for portability (Motif, etc.).
+		//setHelpMenu(hm);		// needed for portability (Motif, etc.).
 
 	}
 
 	/** Convenience routine to make a Menu */
-	public Menu mkMenu(ResourceBundle b, String name) {
+	public JMenu mkMenu(ResourceBundle b, String name) {
 		String menuLabel;
 		try { menuLabel = b.getString(name+".label"); }
 		catch (MissingResourceException e) { menuLabel=name; }
-		return new Menu(menuLabel);
+		return new JMenu(menuLabel);
 	}
 
 	/** Convenience routine to make a MenuItem */
-	public MenuItem mkMenuItem(ResourceBundle b, String menu, String name) {
+	public JMenuItem mkMenuItem(ResourceBundle b, String menu, String name) {
 		String miLabel;
 		try { miLabel = b.getString(menu + "." + name + ".label"); }
 		catch (MissingResourceException e) { miLabel=name; }
@@ -169,9 +172,9 @@ public class MenuController extends MenuBar {
 		catch (MissingResourceException e) { key=null; }
 
 		if (key == null)
-			return new MenuItem(miLabel);
+			return new JMenuItem(miLabel);
 		else
-			return new MenuItem(miLabel, new MenuShortcut(key.charAt(0)));
+			return new JMenuItem(miLabel, key.charAt(0));
 	}
 
 }
