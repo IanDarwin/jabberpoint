@@ -37,10 +37,12 @@ public class MText extends M {
 	/** The TextLayouts corresponding to "text" */
 	List<TextLayout> layouts;
 
+	private int MAX_INDENT = 4;
+
 	/** Construct an M given type, level and String */
 	public MText(int lev, String s) {
-		level = lev;
 		text = s;
+		setLevel(lev);
 	}
 
 	/** Construct an M with no data */
@@ -54,6 +56,24 @@ public class MText extends M {
 
 	public int getLevel() {
 		return level;
+	}
+	
+	public void setLevel(int level) {
+		if (level >= 0 && level <= MAX_INDENT) { 
+			this.level = level;
+		}
+	}
+	
+	public void indent() {
+		if (level > MAX_INDENT) {			
+			level++;
+		}
+	}
+	
+	public void undent() {
+		if (level > 0) {
+			--level;
+		}
 	}
 
 	/**
