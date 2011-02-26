@@ -2,15 +2,15 @@
 
 	<!-- $Id$ -->
 
-	<property name="src" value="."/>
-	<property name="build" value="."/>
-	<property name="build.compiler" value="jikes"/>
+	<property name="src" value="src"/>
+	<property name="build" value="build"/>
 
 	<property name="deploy.dir" value="/home/ian/classes/ext"/>
 	<property name="deploy.jar" value="jabberpoint.jar"/>
 
 	<!-- REQUIRED JARS -->
 	<property name="jdom.jar" value="lib/jdom.jar"/>
+	<property name="darwinsys.jar" value="lib/darwinsys.jar"/>
 
 	<target name="init">
 		<tstamp/> <!-- Set time stamp variables in case we need 'em-->
@@ -18,7 +18,12 @@
 	</target>
 
 	<target name="compile" depends="init">
-		<javac srcdir="${src}" classpath="${jdom.jar}" destdir="${build}" />
+		<javac 
+			srcdir="${src}"
+			classpath="${jdom.jar}:${darwinsys.jar}"
+			destdir="${build}"
+			includeantruntime="false"
+			/>
 	</target>
 
 	<target name="jar" depends="compile">
