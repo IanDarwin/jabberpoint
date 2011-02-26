@@ -37,12 +37,16 @@ public class AccessorText extends AbstractAccessor {
 	 * Load a file and scan, using BufferedReader
 	 */
 	public void loadFile(Model model, String fn) throws IOException {
-		Slide sl = null;
 		if (fn == null) {
 			System.err.println("Code for FileChooser not here yet");
 			return;
 		}
+		Slide sl;
 		BufferedReader is = new BufferedReader(new FileReader(fn));
+		loadFile(model, is);
+	}
+
+	public void loadFile(Model model, BufferedReader is) {
 		String line;
 		model.clear();
 
@@ -55,19 +59,23 @@ public class AccessorText extends AbstractAccessor {
 				int lev;
 				for (lev=0; line.charAt(lev) == '\t'; lev++)
 					/* nullbody--count tabs */;
+				if (sl = null) { sl = new Slide(); model.append(sl); }
 				sl.append(lev, line.substring(lev));
 			} else if (line.startsWith("B ")) {
+				if (sl = null) { sl = new Slide(); model.append(sl); }
 				sl.append(new MBitmap(1, line.substring(1).trim()));
 			} else if (line.startsWith("C ")) {
+				if (sl = null) { sl = new Slide(); model.append(sl); }
 				sl.append(new MCode(line.substring(1).trim()));
 			} else {
+				// Line beginning at left, start a new slide
 				sl = new Slide();
 				sl.setTitle(line);
 				model.append(sl);
 			}
 		}
 		is.close();
-    }
+	}
 
 	public void saveFile(Model model, String fn) throws IOException {
 		throw new IOException("saveFile() not written yet");
