@@ -8,5 +8,5 @@ CLASSPATH=$CLASSPATH:${JPHOME}
 
 case $* in
 	0)	echo "Usage: jp file" >&2;;
-	*)	java -DJABBERPOINTHOME=${JPHOME} JabberPoint $*
+	*)	java -DJABBERPOINTHOME=${JPHOME} jp.JabberPoint $*
 esac
