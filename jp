@@ -3,7 +3,7 @@
 # jp - front end for JabberPoint slideshow program
 # $Id$
 
-JPHOME=/home/ian/src/jabberpoint
+JPHOME=/home/ian/workspace/jabberpoint/build
 CLASSPATH=$CLASSPATH:${JPHOME}
 
 case $* in
