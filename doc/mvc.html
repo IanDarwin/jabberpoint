@@ -1,0 +1,114 @@
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="The vi editor from UNIX">
+   <meta name="Author" content="Ian Darwin">
+   <title>JabberPoint(tm): Implementing MVC in Java</title></head>
+</head>
+<body>
+<h1>JabberPoint(tm): Implementing MVC in Java</h1>
+<p>MVC, or Model-View-Controller, is a 
+<a href="http://www.csc.calpoly.edu/~dbutler/tutorials/winter96/patterns/">design pattern</a>
+that provides a useful separation of functionality and has been shown to produce
+effective GUI designs and to promote reusability.
+<p>This page tries to illustrate some of the issues around MVC
+by using as its example JabberPoint(tm), a simple slide-show program
+that has no relationship at all to Microsoft(r) PowerPoint(tm).
+<b>N.B. This is not the full source code</b>, but only the fragments
+needed to show the MVC architecture. If you want the full source
+code to compile or use, go to the course author's web site,
+<a href="http://www.darwinsys.com/">http://www.darwinsys.com/</a>,
+and follow the link to Free Software.
+</p>
+<hr/>
+<p>Just to remind you of what we said MVC stands for:</p>
+<img src="mvc.gif">
+<ul>
+<li>The <b>model</b> contains the data and functionality, can be displayed by many views
+<br/>Commonly includes a main program
+</li>
+<br/>May subclass <kbd>java.util.Observable</kbd>
+<li>The <B>view</B> is the GUI or display of the model's data
+<br/>Commonly creates a frame, or is an applet, and adds listeners
+</li>
+<br/>May implement <kbd>java.util.Observer</kbd>
+<li>The <B>controller</B> handles events for the model and the view
+<br/>Commonly implements <kbd>listener</kbd> interfaces and responds to events by calling methods in the model
+</li>
+</ul>
+<p>In the following paragraphs we point out some key features of each.</p>
+<h2>The Model</h2>
+<p>Here is part of the Model,
+<a href="JPModel.java">Model.java</a>
+</p>
+<h2>The View(s)</h2>
+<p>The simplest view is a 
+<a href="View.java">SlideShow view</a>, which simply paints the current
+page in large letters.
+This View is a Component that can be imbedded in a Frame or Applet.
+</p>
+<p>How does it know when to do so? Note the method update().
+This is <B>not</B> the update method of AWT, but is part of the
+<kbd>Observable</kbd> interface. This update simply saves the data
+it was passed in as a Slide, and calls AWT's repaint, which will call
+the paint method a few lines below it in the listing.
+</p>
+<p>But there can be more than one view.
+In a slide show program there are usually three: the slideshow (which
+we implement), and the Outline and Sorter (which we do not yet
+provide). Each of these would be a different view, and would be
+registered as an Observer for the Model as above.
+You could switch between them using some kind of
+Layout manager.
+Or, they could each be in a Frame; <I>because they use Observable/Observer,
+when you updated the data in one window, it would immediately be
+updated in all of them!</I>
+</p>
+<h2>The Controller(s)</h2>
+<p>The controllers are invoked when the user does something.
+Here is a nice simple controller, to give you the idea.
+The
+<a href="KeyController.java">KeyController.java</a>
+just responds to PageUp and PageDown (or Enter), and moves
+the current page up or down as appropriate.
+</p>
+<p>It is "connected" with
+<code>
+		frame.addKeyListener(new KeyController(model));
+</code>
+</p>
+<p>But a Controller does not have to be an explicit listener.
+We might, for example,
+<a href="MenuController.java">use a MenuBar as a listener</a>,
+and connect it with the statement
+<code>
+		frame.setMenuBar(new MenuController(view,model));	// and controller
+</code>
+after the instantiation of KeyController in our main program.
+It then calls methods on the Model, such as nextPage().
+</p>
+<p>This also means we can add additional functionality such as loadFile().
+And, when we get around to writing the Editing part of this program,
+we can add methods like saveFile(), newFile(), etc., to the model, 
+and call them from here.
+</p>
+<p>One complication is that the MenuController needs may need access to the
+top-level Frame (just for purposes of Dialog creation), but the View is a
+component inside the Frame, and we don't wish to View to know too much
+about its environment.
+One way around this is to pass the Frame into the MenuController's
+Constructor; another is for the View to have a getFrame() method.
+</p>
+<h2>But Where is Main?</h2>
+<p>The Model, View and Controller are usually tied together with a
+Main Program; here is part of 
+<a href="JPMain.java">JPMain.java</a>.
+</p>
+<h2>Beyond This</h2>
+<p>MVC can be more complex than this.
+For an extremely powerful (but wonderful!) example, see the JFC/Swing
+components JTable and TableDataModel.
+However, this presentation presents the basic idea.
+</p>
+</body>
+</html>
