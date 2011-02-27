@@ -50,7 +50,7 @@ public class Slide {
 	}
 
 	/** Get the List of all Ms */
-	public List getMs() {
+	public List<M> getMs() {
 		return ms;
 	}
 
