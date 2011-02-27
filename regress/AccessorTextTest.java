@@ -25,17 +25,19 @@ public class AccessorTextTest {
 	public void testSimple()  throws Throwable  {
 		String text = "Slideshow Title\n" +
 			"Slide Title" + "\n" +
-			"\t" + "Heading" + "\n" +
-			"\t" + "Text" + "\n" +
-			"C " + "int i = 0" + "\n" +
-			"I " + "/tmp/id" + "\n";
+			"\t" + "Heading" + "\n" +	// 0
+			"\t" + "Text" + "\n" +		// 1
+			"\t\t" + "Text" + "\n" +	// 2
+			"C " + "int i = 0" + "\n" +	// 3
+			"I " + "/tmp/id" + "\n";	// 4
 		Model m = read(text);
 		assertEquals("Slideshow Title", m.getShowTitle());
 		Slide sl = m.getSlide(0);
 		assertEquals("Heading", ((MText)sl.getM(0)).getText());
 		assertEquals("Text", ((MText)sl.getM(1)).getText());
-		assertEquals("int i = 0", ((MCode)sl.getM(2)).getText());
-		assertEquals("/tmp/id", ((MCodeInsert)sl.getM(3)).getFileName());
+		assertEquals(1, ((MText)sl.getM(1)).getLevel());
+		assertEquals("int i = 0", ((MCode)sl.getM(3)).getText());
+		assertEquals("/tmp/id", ((MCodeInsert)sl.getM(4)).getFileName());
 	}
 
 	private Model read(String text) throws IOException{
