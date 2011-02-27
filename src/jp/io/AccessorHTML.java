@@ -53,7 +53,7 @@ public class AccessorHTML extends AbstractAccessor {
 		PrintWriter outFile = null;
 		int pageNum = 0;
 
-		System.out.println("Making HTML for show named " + model.getTitle());
+		System.out.println("Making HTML for show named " + model.getShowTitle());
 		PrintWriter tocFile = new PrintWriter(new FileWriter(mkFile(TOCFILENAME)));
 
 		tocFile.println("<HTML>");
@@ -61,9 +61,9 @@ public class AccessorHTML extends AbstractAccessor {
 		tocFile.println(" -->");
 		tocFile.println("<LINK REL=\"stylesheet\" TYPE=\"text/css\" HREF=\"stylesheet.css\" TITLE=\"Style\">");
 		tocFile.println("<BODY BGCOLOR=WHITE>");
-		tocFile.println("<TITLE>"+model.getTitle()+": Table of Content</TITLE>");
+		tocFile.println("<TITLE>"+model.getShowTitle()+": Table of Content</TITLE>");
 		mkNavigator(tocFile, "Contents Page", TOCFILENAME, TOCFILENAME, mkFileName(1));
-		tocFile.println("<H1 ALIGN=CENTER>"+model.getTitle()+": Table of Content</H1>");
+		tocFile.println("<H1 ALIGN=CENTER>"+model.getShowTitle()+": Table of Content</H1>");
 		tocFile.println("<OL>");
 
 
@@ -120,9 +120,9 @@ public class AccessorHTML extends AbstractAccessor {
 		outFile.close();
 		outFileName = mkFileName(++pageNum);
 		outFile = new PrintWriter(new FileWriter(mkFile(outFileName)));
-		outFile.println("<H1>/*EOF - "+model.getTitle()+"</H1>");
+		outFile.println("<H1>/*EOF - "+model.getShowTitle()+"</H1>");
 		outFile.println("That is the end of the slide show named ");
-		outFile.println("<I>"+model.getTitle()+"</I>. Please go");
+		outFile.println("<I>"+model.getShowTitle()+"</I>. Please go");
 		outFile.println("<A HREF="+oldFileName+">b a c k</A>.");
 		outFile.close();
 

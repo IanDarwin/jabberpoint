@@ -41,7 +41,7 @@ public class AccessorJDOM extends AccessorXML {
 			Element r = doc.getRootElement();
 
 			String title = r.getChild("head").getChild("title").getText();
-			model.setTitle(title);
+			model.setShowTitle(title);
 
 			List slides = r.getChildren("slide");
 			System.out.println("There are " + slides.size() + " slides.");

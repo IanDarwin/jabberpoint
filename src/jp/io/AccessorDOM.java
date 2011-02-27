@@ -71,7 +71,7 @@ public class AccessorDOM extends AccessorXML {
 				model.append(slide);
 			} else if (type.equals("title")) {
 				if (slide == null)
-					model.setTitle(getChildNodeText(n));
+					model.setShowTitle(getChildNodeText(n));
 				else
 					slide.setTitle(getChildNodeText(n));
 			} else if (type.equals("h1")) {
