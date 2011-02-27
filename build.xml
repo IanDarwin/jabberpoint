@@ -17,11 +17,18 @@
 		<mkdir dir="${build}"/> <!-- Ensure build directory exists -->
 	</target>
 
-	<target name="compile" depends="init">
+	<target name="copyfiles">
+		<copy todir="${build}">
+			<fileset dir="${src}" includes="**.properties" />
+		</copy>
+	</target>
+
+	<target name="compile" depends="init,copyfiles">
 		<javac 
 			srcdir="${src}"
 			classpath="${jdom.jar}:${darwinsys.jar}"
 			destdir="${build}"
+			debug="true"
 			includeantruntime="false"
 			/>
 	</target>
