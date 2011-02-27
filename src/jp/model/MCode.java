@@ -31,6 +31,11 @@ public class MCode extends MText {
 	}
 	
 	@Override
+	public Dimension getBBox(ImageObserver o) {
+		return new Dimension(900, 36);
+	}
+	
+	@Override
 	public String toString() {
 		return "MCode[" + level+","+getText()+"]";
 	}

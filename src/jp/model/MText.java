@@ -80,6 +80,7 @@ public class MText extends M {
 	 * Get the BBOX for this text item, by maxing the widths and summing the
 	 * heights of each TextLayout (~= "line").
 	 */
+	@Override
 	public Dimension getBBox(ImageObserver o) {
 		if (layouts == null)
 			getLayouts();
@@ -97,6 +98,7 @@ public class MText extends M {
 		return new Dimension(xsize, ysize);
 	}
 
+	@Override
 	public void draw(int x, int y, Graphics g, Style s, ImageObserver o) {
 		if (text == null || text.length() == 0)
 			return;
@@ -139,7 +141,7 @@ public class MText extends M {
 		float wrappingWidth;
 
 		// wrappingWidth = getSize().width - 15;
-		wrappingWidth = 800 - 15;
+		wrappingWidth = 900 - 15;	// XXX
 
 		while (measurer.getPosition() < text.length()) {
 			TextLayout layout = measurer.nextLayout(wrappingWidth);
@@ -147,6 +149,7 @@ public class MText extends M {
 		}
 	}
 
+	@Override
 	public String toString() {
 		return "MText[" + level + "," + text + "]";
 	}
