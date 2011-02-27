@@ -28,6 +28,7 @@ public class KeyController extends KeyAdapter {
 		case KeyEvent.VK_PAGE_DOWN:
 		case KeyEvent.VK_DOWN:
 		case KeyEvent.VK_ENTER:
+		case KeyEvent.VK_SPACE:
 		case '+':
 			model.nextPage();
 			break;
