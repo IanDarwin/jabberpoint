@@ -65,9 +65,10 @@ public class JabberPoint {
 		model = new Model();
 		slideView = new ShowView(model);
 		textView = new JList<Slide>(model);
-		model.addObserver(slideView);		// view,
+		model.addObserver(slideView);		// view
 
-		frame = new JFrame("JabberPoint 0.0");	// GUI
+		frame = new JFrame("JabberPoint 0.1");	// GUI
+		model.setParentView(frame);
 		JSplitPane pane = new JSplitPane(
 			JSplitPane.HORIZONTAL_SPLIT, textView, slideView);
 		frame.setContentPane(pane);
@@ -91,13 +92,13 @@ public class JabberPoint {
 
 		styles = new Style[] {
 			// Presumably these will come from a file
-			new Style(50, Color.red,   40, 44),	// title
+			new Style(50, Color.red,   40, 48),	// title
 			new Style(20, Color.blue,  32, 36),	// main or H1
 			new Style(50, Color.black, 24, 28),	// sub or H2
 			new Style(70, Color.black, 20, 24),	// sub or H3
 			new Style(90, Color.black, 16, 20),	// sub or H4
 		};
-		codeStyle = new Style(0, Color.black, 20, 4);
+		codeStyle = new Style(50, Color.black, 20, 4);
 	}
 
 	public static Style getStyle(int lev) {
