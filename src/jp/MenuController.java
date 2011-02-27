@@ -1,9 +1,9 @@
 package jp;
 
-import java.awt.Menu;
-import java.awt.MenuBar;
-import java.awt.MenuItem;
-import java.awt.MenuShortcut;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -18,9 +18,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import jp.AboutBox;
 import jp.io.Accessor;
 import jp.io.AccessorFactory;
+import jp.model.M;
+import jp.model.MText;
 import jp.model.Model;
 
 /** This is the Menu Controller for the View.
@@ -32,12 +33,18 @@ import jp.model.Model;
  * @author Ian F. Darwin, ian@darwinsys.com
  * @version $Id$
  */
-@SuppressWarnings("serial")
 public class MenuController extends JMenuBar {
+
+	private static final long serialVersionUID = -1624393224606663016L;
 	/** The Frame, used only for parenting Dialogs */
-	JFrame parent;
+	private JFrame parent;
 	/** The Model which we are controlling */
-	Model model;
+	private Model model;
+	private final ClipboardOwner object = new ClipboardOwner() {
+		public void lostOwnership(Clipboard clipboard, Transferable contents) {
+			// don't care
+		}               	
+	};
 
 	public MenuController(JFrame f, Model m) {
 		parent = f;
@@ -114,6 +121,25 @@ public class MenuController extends JMenuBar {
 			}
 		});
 		add(fm);
+		
+		JMenu em = mkMenu(b, "edit");
+		em.add(mi = mkMenuItem(b, "edit", "copy"));
+		mi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StringBuffer sb = new StringBuffer();
+				final Slide slide = model.getCurrentSlide();
+				sb.append(slide.getTitle()).append("\n");
+				for (M m : slide.getMs()) {
+					if (m instanceof MText) {
+						sb.append(((MText)m).getText()).append("\n");
+					}
+				}
+			    Clipboard clipboard = getToolkit().getSystemClipboard();
+			    StringSelection contents = new StringSelection(sb.toString());
+				clipboard.setContents(contents, object);
+			}
+		});
+		add(em);
 
 		JMenu vm = mkMenu(b,  "view");
 		vm.add(mi = mkMenuItem(b, "view", "next"));
