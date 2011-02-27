@@ -1,9 +1,11 @@
 package jp.model;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import javax.swing.JFrame;
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
 
@@ -42,7 +44,7 @@ public class Model extends Observable implements ListModel<Slide> {
 		clear();
 	}
 
-	java.awt.Component view;
+	private JFrame parentView;
 
 	// Methods used in the Controller(s) to control
 	// what part of the data the view displays:
@@ -50,14 +52,6 @@ public class Model extends Observable implements ListModel<Slide> {
 	/** Return the number of slides */
 	public int getSize() {
 		return showList.size();
-	}
-
-	public String getTitle() {
-		return showTitle;
-	}
-
-	public void setTitle(String nt) {
-		showTitle = nt;
 	}
 
 	/** Return the current page */
@@ -97,7 +91,7 @@ public class Model extends Observable implements ListModel<Slide> {
 	/** Clear out the show, getting it ready for the next use */
 	public void clear() {
 		showList = new ArrayList<Slide>();
-		setTitle("New presentation");
+		setShowTitle("New presentation");
 		setSlideNumber(-1);
 	}
 
@@ -147,9 +141,20 @@ public class Model extends Observable implements ListModel<Slide> {
 
 	public void setShowTitle(String showTitle) {
 		this.showTitle = showTitle;
+		if (parentView != null) {
+			parentView.setTitle(showTitle);	// XXX should be notified by an event
+		}
 	}
 
 	public void setPageNumber(int pageNumber) {
 		this.pageNumber = pageNumber;
+	}
+
+	public JFrame getParentView() {
+		return parentView;
+	}
+
+	public void setParentView(JFrame parentView) {
+		this.parentView = parentView;
 	}
 }
