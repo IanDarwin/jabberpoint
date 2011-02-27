@@ -17,6 +17,8 @@ import static org.junit.Assert.*;
 
 public class AccessorTextTest {
 
+	private static final AccessorText accessor = new AccessorText();
+
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -43,7 +45,7 @@ public class AccessorTextTest {
 	private Model read(String text) throws IOException{
 		BufferedReader is = new BufferedReader(new StringReader(text));
 		Model m = new Model();;
-		new AccessorText().loadFile(m, is);
+		accessor.loadFile(m, is);
 		return m;
 	}
 }
