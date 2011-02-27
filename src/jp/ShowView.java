@@ -40,9 +40,9 @@ public class ShowView extends JComponent implements Observer {
 	/** Construct a ShowView */
 	ShowView(Model m) {
 		setBackground(Color.white);
-		Dimension them = Toolkit.getDefaultToolkit().getScreenSize();
-		prefWidth = them.width;
-		prefHeight = them.height;
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		prefWidth = screenSize.width;
+		prefHeight = screenSize.height;
 		model = m;
 		labelFont = new Font("Dialog", Font.BOLD, 10);
 	}

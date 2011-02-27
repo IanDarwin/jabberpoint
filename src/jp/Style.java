@@ -23,10 +23,10 @@ public class Style {
 
 	int leading;
 
-	public Style(int in, Color c, int pts, int lead) {
+	public Style(int in, Color c, int size, int lead) {
 		indent  = in;
 		color   = c;
-		font    = new Font("Helvetica", Font.BOLD, fontSize=pts);
+		font    = new Font("Helvetica", Font.BOLD, fontSize=size);
 		leading = lead;
 	}
 	public String toString() {
