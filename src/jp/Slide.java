@@ -57,4 +57,12 @@ public class Slide {
 	public int getSize() {
 		return ms.size();
 	}
+	
+	@Override
+	public String toString() {
+		if (title != null && title.length() != 0) {
+			return title;
+		}
+		return super.toString();
+	}
 }
