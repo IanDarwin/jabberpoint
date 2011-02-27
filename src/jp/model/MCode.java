@@ -6,60 +6,32 @@ import java.awt.image.ImageObserver;
 
 import javax.swing.JOptionPane;
 
+import jp.JabberPoint;
 import jp.Style;
+
 
 /** The data model, for a CODE item.
  * @author Ian F. Darwin, ian@darwinsys.com
  * @version $Id$
  */
-public class MCode extends M {
+public class MCode extends MText {
 
-	/** The filename */
-	protected String fileName;
-
-	/** A helper object, to display a canned message */
-	M mesg = new MText(1, "(see code window)");
-
-	/** Construct an M given type, level and String */
+	/** Construct an MCode given code String */
 	public MCode(String s) {
-		fileName = s;
+		super(0, s);
+	}
+	
+	MCode() {
+		this("NO TEXT GIVEN");
 	}
 
-	public String getText() {
-		return "Code include of " + fileName;
+	@Override
+	public Style getStyle() {
+		return JabberPoint.getCodeStyle();
 	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public Dimension getBBox(ImageObserver o) {
-		// FontMetrics fm = JabberPoint.view.getFontMetrics(JabberPoint.styles[level].font);
-		// return new Dimension(fm.stringWidth(label), fm.getAscent());
-		return new Dimension(600, 400);
-	}
-
-	boolean shown;
-
-	public void draw(int x, int y, Graphics g, Style s, ImageObserver o) {
-		g.setFont(s.getFont());
-		g.setColor(s.getColor());
-		mesg.draw(x, y, g, s, o);
-		if (!shown) {
-			try {
-				Runtime.getRuntime().exec(
-					"xterm -fn lucidasanstypewriter-18 -T " + fileName +
-					" -e vi " + fileName);
-				shown = true;
-			} catch (java.io.IOException ex) {
-				JOptionPane.showMessageDialog(null,
-					ex.toString(), "Error",
-					JOptionPane.ERROR_MESSAGE);
-			}
-		}
-	}
-
+	
+	@Override
 	public String toString() {
-		return "MCode[" + level+","+fileName+"]";
+		return "MCode[" + level+","+getText()+"]";
 	}
 }

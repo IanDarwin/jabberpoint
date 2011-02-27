@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -35,25 +33,29 @@ public class JabberPoint {
 	protected static ShowView slideView;
 	/** Other View */
 	protected static JList textView;
-	/** The styles */
+	/** The styles XXX should not be static */
 	protected static Style[] styles;
+	private static Style codeStyle;
 
 	/** The Real Main Program */
 	public static void main(String argv[]) {
 
-		JabberPoint jp = new JabberPoint();
+		JabberPoint jp = null;
 
 		try {
+			jp = new JabberPoint();
+
 			if (argv.length == 0) { // run a demo program
 				AccessorFactory.getInstance(AccessorFactory.DEMO_NAME).loadFile(jp.model, "");
 			} else {
 				AccessorFactory.getInstance(argv[0]).loadFile(jp.model, argv[0]);
 			}
 			jp.model.setSlideNumber(0);
-		} catch (IOException ex) {
+		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,
 				"IO Error: " + ex, "JabberPoint Error",
 				JOptionPane.ERROR_MESSAGE);
+			ex.printStackTrace();
 		}
 	}
 
@@ -62,7 +64,7 @@ public class JabberPoint {
 
 		model = new Model();
 		slideView = new ShowView(model);
-		textView = new JList(model);
+		textView = new JList<Slide>(model);
 		model.addObserver(slideView);		// view,
 
 		frame = new JFrame("JabberPoint 0.0");	// GUI
@@ -80,7 +82,7 @@ public class JabberPoint {
 		textView.addKeyListener(keyController);
 		frame.setJMenuBar(new MenuController(frame, model));	// Another one.
 
-        frame.addWindowListener(new WindowAdapter() {	// Last controller.
+		frame.addWindowListener(new WindowAdapter() {	// Last controller.
 			public void windowClosing(WindowEvent e) {
 				// XXX save changes here
 				System.exit(0);
@@ -89,12 +91,13 @@ public class JabberPoint {
 
 		styles = new Style[] {
 			// Presumably these will come from a file
-			new Style(50, Color.red,   48, 60),	// title
-			new Style(20, Color.blue,  40, 46),	// main or H1
-			new Style(50, Color.black, 36, 44),	// sub or H2
-			new Style(70, Color.black, 30, 36),	// sub or H3
-			new Style(90, Color.black, 24, 30),	// sub or H4
+			new Style(50, Color.red,   40, 44),	// title
+			new Style(20, Color.blue,  32, 36),	// main or H1
+			new Style(50, Color.black, 24, 28),	// sub or H2
+			new Style(70, Color.black, 20, 24),	// sub or H3
+			new Style(90, Color.black, 16, 20),	// sub or H4
 		};
+		codeStyle = new Style(0, Color.black, 20, 4);
 	}
 
 	public static Style getStyle(int lev) {
@@ -105,6 +108,14 @@ public class JabberPoint {
 
 	public static Graphics getGraphics() {
 		return frame.getGraphics();
+	}
+
+	public static Style getCodeStyle() {
+		return codeStyle;
+	}
+
+	public static JFrame getFrame() {
+		return frame;
 	}
 }
 

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
+import jp.JabberPoint;
 import jp.Style;
 
 /** The data model, for one item.
@@ -35,9 +36,18 @@ public abstract class M {
 
 	public abstract Dimension getBBox(ImageObserver o);
 
-	public abstract void draw(int x, int y, Graphics g, Style s,
-		ImageObserver o);
+	public abstract void draw(
+			int x, int y, 
+			Graphics g, 
+			Style s,
+			ImageObserver o);
 
+	
+	public Style getStyle() {
+		return JabberPoint.getStyle(getLevel());
+	}
+	
+	@Override
 	public String toString() {
 		return "Class " + getClass().getName() + " doesn't provide toString()";
 	}

@@ -7,6 +7,7 @@ import java.io.IOException;
 import jp.Slide;
 import jp.model.MBitmap;
 import jp.model.MCode;
+import jp.model.MCodeInsert;
 import jp.model.Model;
 
 /**
@@ -58,7 +59,8 @@ public class AccessorText extends AbstractAccessor {
 			if (line.startsWith("\t")) {
 				int lev;
 				for (lev=0; line.charAt(lev) == '\t'; lev++)
-					/* nullbody--count tabs */;
+					/* nullbody--count tabs */
+					;
 				if (sl == null) { sl = new Slide(); model.append(sl); }
 				sl.append(lev, line.substring(lev));
 			} else if (line.startsWith("B ")) {
@@ -67,6 +69,9 @@ public class AccessorText extends AbstractAccessor {
 			} else if (line.startsWith("C ")) {
 				if (sl == null) { sl = new Slide(); model.append(sl); }
 				sl.append(new MCode(line.substring(1).trim()));
+			} else if (line.startsWith("I ")) {
+				if (sl == null) { sl = new Slide(); model.append(sl); }
+				sl.append(new MCodeInsert(line.substring(1).trim()));
 			} else {
 				// Line beginning at left, start a new slide
 				sl = new Slide();

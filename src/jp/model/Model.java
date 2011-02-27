@@ -26,7 +26,7 @@ import jp.Slide;
 // XXX Need both ListChangedEvents and ListSelectionEvents
 // XXX for different methods here!
 
-public class Model extends Observable implements ListModel {
+public class Model extends Observable implements ListModel<Slide> {
 
 	/** The slideshow title */
 	protected String showTitle;
@@ -102,8 +102,10 @@ public class Model extends Observable implements ListModel {
 	}
 
 	/** Append a slide to the presentation */
-	public void append(Slide s) {
-		showList.add(s);
+	public void append(Slide slide) {
+		showList.add(slide);
+		setChanged();				// for the Observers (required!)
+		notifyObservers(slide);
 	}
 
 	/** Retrieve a given slide, as seen by rest of program */
@@ -112,7 +114,7 @@ public class Model extends Observable implements ListModel {
 	}
 
 	/** Retrieve a given slide, as used by JList and ListModel */
-	public Object getElementAt(int n) {
+	public Slide getElementAt(int n) {
 		return showList.get(n);
 	}
 

@@ -130,7 +130,7 @@ public class MText extends M {
 		Graphics2D g2d = (Graphics2D) JabberPoint.getGraphics();
 		FontRenderContext frc = g2d.getFontRenderContext();
 
-		Style s = JabberPoint.getStyle(level);
+		Style s = getStyle();
 
 		AttributedString attrStr = new AttributedString(text);
 		attrStr.addAttribute(TextAttribute.FONT, s.getFont(), 0, text.length());
