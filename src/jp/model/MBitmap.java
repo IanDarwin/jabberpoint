@@ -44,21 +44,24 @@ public class MBitmap extends M {
 		image = null;
 	}
 
-	/** REturn the filename */
+	/** Return the filename */
 	public String getName() {
 		return imageName;
 	}
 
 	/** Find the bounding box of the image */
+	@Override
 	public Dimension getBBox(ImageObserver o) {
 		return new Dimension(image.getWidth(o), image.getHeight(o));
 	}
 
+	@Override
 	public void draw(int x, int y, Graphics g, Style s, ImageObserver o) {
 		// System.out.println("Drawing " + image + " at " + x + "," + y);
 		g.drawImage(image, x, y, o);
 	}
 
+	@Override
 	public String toString() {
 		return "MBitmap[" + level + "," + imageName + "]";
 	}
