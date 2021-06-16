@@ -1,0 +1,2 @@
+= jabberpoint
+A very ancient and incomplete attempt at a slide show program. Here for historical reasons only.
